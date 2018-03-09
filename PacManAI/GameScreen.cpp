@@ -21,3 +21,11 @@ GameScreen::~GameScreen() {
 SDL_Event *GameScreen::getEvent() {
 	return &m_event;
 }
+
+void GameScreen::updateScreen() {
+	SDL_UpdateWindowSurface(m_pWindow);
+}
+
+void GameScreen::paintAsset(GameAsset *asset) {
+	SDL_BlitSurface(asset->getSpriteSurface(), asset->getSpriteRect(), m_pWindowSurface, nullptr);
+}

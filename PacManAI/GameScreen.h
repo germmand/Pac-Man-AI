@@ -1,5 +1,7 @@
 #pragma once
+
 #include <SDL.h>
+#include "GameAsset.h"
 
 class GameScreen {
 private:
@@ -11,4 +13,6 @@ public:
 	GameScreen();
 	~GameScreen();
 	SDL_Event *getEvent();
+	void updateScreen();
+	void paintAsset(GameAsset *asset);
 };

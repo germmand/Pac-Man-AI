@@ -21,12 +21,18 @@
     <ClCompile Include="GameScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameAsset.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ScreenConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameScreen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

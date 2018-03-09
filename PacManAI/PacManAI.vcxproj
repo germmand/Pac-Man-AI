@@ -122,10 +122,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GameAsset.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameAsset.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="ScreenConfig.h" />
   </ItemGroup>
