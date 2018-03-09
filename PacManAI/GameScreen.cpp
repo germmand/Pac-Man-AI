@@ -1,0 +1,20 @@
+#include "GameScreen.h"
+#include "ScreenConfig.h"
+
+GameScreen::GameScreen() {
+	m_pWindow = SDL_CreateWindow(
+					"Pac-Man AI", 
+					SDL_WINDOWPOS_CENTERED, 
+					SDL_WINDOWPOS_CENTERED, 
+					WIDTH, 
+					HEIGHT, 
+					SDL_WINDOW_ALLOW_HIGHDPI);
+}
+
+GameScreen::~GameScreen() {
+	SDL_DestroyWindow(m_pWindow);
+}
+
+SDL_Event *GameScreen::getEvent() {
+	return &m_event;
+}
