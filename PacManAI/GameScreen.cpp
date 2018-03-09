@@ -9,9 +9,12 @@ GameScreen::GameScreen() {
 					WIDTH, 
 					HEIGHT, 
 					SDL_WINDOW_ALLOW_HIGHDPI);
+
+	m_pWindowSurface = SDL_GetWindowSurface(m_pWindow);
 }
 
 GameScreen::~GameScreen() {
+	SDL_FreeSurface(m_pWindowSurface);
 	SDL_DestroyWindow(m_pWindow);
 }
 

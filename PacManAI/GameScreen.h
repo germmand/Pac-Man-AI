@@ -4,7 +4,9 @@
 class GameScreen {
 private:
 	SDL_Window *m_pWindow;
+	SDL_Surface *m_pWindowSurface;
 	SDL_Event m_event;
+
 public:
 	GameScreen();
 	~GameScreen();
