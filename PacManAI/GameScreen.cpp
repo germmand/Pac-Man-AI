@@ -11,6 +11,7 @@ GameScreen::GameScreen() {
 					SDL_WINDOW_ALLOW_HIGHDPI);
 
 	m_pWindowSurface = SDL_GetWindowSurface(m_pWindow);
+	m_bIsRunning = true;
 }
 
 GameScreen::~GameScreen() {
@@ -28,4 +29,12 @@ void GameScreen::updateScreen() {
 
 void GameScreen::paintAsset(GameAsset *asset) {
 	SDL_BlitSurface(asset->getSpriteSurface(), asset->getSpriteRect(), m_pWindowSurface, nullptr);
+}
+
+bool GameScreen::isRunning() {
+	return m_bIsRunning;
+}
+
+void GameScreen::exitGame() {
+	m_bIsRunning = false;
 }

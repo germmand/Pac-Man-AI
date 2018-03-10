@@ -15,10 +15,10 @@ int main(int argc, char *argv[]) {
 
 	GameAsset asset = GameAsset("assets/food.bmp");
 	
-	while (true) {
+	while (gameScreen->isRunning()) {
 		if (SDL_PollEvent(gameScreen->getEvent())) {
 			if (SDL_QUIT == gameScreen->getEvent()->type) {
-				break;
+				gameScreen->exitGame();
 			}
 		}
 
