@@ -5,13 +5,16 @@
 
 class GameAsset {
 private:
-	SDL_Surface *m_pSprite;
 	SDL_Rect *m_pRect;
+	SDL_Texture *m_pTexture;
+	SDL_Renderer *m_pRenderer;
 
 public:
-	GameAsset(const std::string& spritePath, SDL_Rect *spriteRect = nullptr);
+	GameAsset(const std::string& spritePath, SDL_Renderer *renderer, SDL_Rect *spriteRect = nullptr);
 	~GameAsset();
 
-	SDL_Surface *getSpriteSurface();
+	SDL_Texture *getSpriteTexture();
 	SDL_Rect *getSpriteRect();
+
+	void printAsset();
 };

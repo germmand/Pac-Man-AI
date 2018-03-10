@@ -10,25 +10,17 @@ GameScreen::GameScreen() {
 					HEIGHT, 
 					SDL_WINDOW_ALLOW_HIGHDPI);
 
-	m_pWindowSurface = SDL_GetWindowSurface(m_pWindow);
+	m_pWindowRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_bIsRunning = true;
 }
 
 GameScreen::~GameScreen() {
-	SDL_FreeSurface(m_pWindowSurface);
+	SDL_DestroyRenderer(m_pWindowRenderer);
 	SDL_DestroyWindow(m_pWindow);
 }
 
 SDL_Event *GameScreen::getEvent() {
 	return &m_event;
-}
-
-void GameScreen::updateScreen() {
-	SDL_UpdateWindowSurface(m_pWindow);
-}
-
-void GameScreen::paintAsset(GameAsset *asset) {
-	SDL_BlitSurface(asset->getSpriteSurface(), asset->getSpriteRect(), m_pWindowSurface, nullptr);
 }
 
 bool GameScreen::isRunning() {
@@ -37,4 +29,8 @@ bool GameScreen::isRunning() {
 
 void GameScreen::exitGame() {
 	m_bIsRunning = false;
+}
+
+SDL_Renderer *GameScreen::getRenderer() {
+	return m_pWindowRenderer;
 }

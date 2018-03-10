@@ -11,22 +11,26 @@ int main(int argc, char *argv[]) {
 	}
 
 	// Se crea la pantalla del juego.
-	GameScreen *gameScreen = new GameScreen();
+	GameScreen *game = new GameScreen();
 
-	GameAsset asset = GameAsset("assets/food.bmp");
+	// Esto es para la prueba con el renderer...
+	SDL_Rect *foodCoord = new SDL_Rect();
+	foodCoord->x = foodCoord->y = 0;
+	foodCoord->w = foodCoord->h = 9;
+	GameAsset *food = new GameAsset("assets/food.bmp", game->getRenderer(), foodCoord);
 	
-	while (gameScreen->isRunning()) {
-		if (SDL_PollEvent(gameScreen->getEvent())) {
-			if (SDL_QUIT == gameScreen->getEvent()->type) {
-				gameScreen->exitGame();
+	while (game->isRunning()) {
+		while (SDL_PollEvent(game->getEvent()) != 0) {
+			if (SDL_QUIT == game->getEvent()->type) {
+				game->exitGame();
 			}
 		}
 
-		gameScreen->paintAsset(&asset);
-		gameScreen->updateScreen();
+		food->printAsset();
 	}
 	// Se libera la memoria.
-	delete gameScreen;
+	delete food;
+	delete game;
 
 	// Se cierra SDL.
 	SDL_Quit();
