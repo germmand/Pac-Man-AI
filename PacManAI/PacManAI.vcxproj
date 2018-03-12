@@ -125,10 +125,12 @@
     <ClCompile Include="GameAsset.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameAsset.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="ScreenConfig.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -12,6 +12,8 @@ GameScreen::GameScreen() {
 
 	m_pWindowRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_bIsRunning = true;
+	m_dFPS = 60;
+	m_currentFrame = 0;
 }
 
 GameScreen::~GameScreen() {
@@ -33,4 +35,16 @@ void GameScreen::exitGame() {
 
 SDL_Renderer *GameScreen::getRenderer() {
 	return m_pWindowRenderer;
+}
+
+void GameScreen::updateFrame() {
+	m_currentFrame = (m_currentFrame + 1) % m_dFPS;
+}
+
+int *GameScreen::getCurrentFPSRate() {
+	return &m_dFPS;
+}
+
+int *GameScreen::getCurrentFrameRate() {
+	return &m_currentFrame;
 }

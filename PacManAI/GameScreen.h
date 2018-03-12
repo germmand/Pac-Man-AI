@@ -9,6 +9,8 @@ private:
 	SDL_Renderer *m_pWindowRenderer;
 	SDL_Event m_event;
 	bool m_bIsRunning;
+	int m_dFPS;
+	int m_currentFrame;
 
 public:
 	GameScreen();
@@ -17,4 +19,7 @@ public:
 	SDL_Renderer *getRenderer();
 	bool isRunning();
 	void exitGame();
+	void updateFrame();
+	int *getCurrentFPSRate();
+	int *getCurrentFrameRate();
 };

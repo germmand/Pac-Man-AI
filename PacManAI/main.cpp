@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include "GameScreen.h"
+#include "Player.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -13,23 +14,37 @@ int main(int argc, char *argv[]) {
 	// Se crea la pantalla del juego.
 	GameScreen *game = new GameScreen();
 
-	// Esto es para la prueba con el renderer...
-	SDL_Rect *foodCoord = new SDL_Rect();
-	foodCoord->x = foodCoord->y = 0;
-	foodCoord->w = foodCoord->h = 9;
-	GameAsset *food = new GameAsset("assets/food.bmp", game->getRenderer(), foodCoord);
+	Player *pacman = new Player(game->getRenderer(), "assets/pacman.bmp");
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {
 			if (SDL_QUIT == game->getEvent()->type) {
 				game->exitGame();
+			} else if (SDL_KEYDOWN == game->getEvent()->type) {
+				switch (game->getEvent()->key.keysym.sym) {
+				case SDLK_UP:
+					pacman->setDirection(Movement::UP);
+					break;
+				case SDLK_DOWN:
+					pacman->setDirection(Movement::DOWN);
+					break;
+				case SDLK_RIGHT:
+					pacman->setDirection(Movement::RIGHT);
+					break;
+				case SDLK_LEFT:
+					pacman->setDirection(Movement::LEFT);
+					break;
+				}
 			}
 		}
 
-		food->printAsset();
+		game->updateFrame();
+		pacman->updateAnimation(game->getCurrentFPSRate(), game->getCurrentFrameRate());
+		pacman->movePlayer();
+		pacman->printPlayer();
 	}
 	// Se libera la memoria.
-	delete food;
+	delete pacman;
 	delete game;
 
 	// Se cierra SDL.
