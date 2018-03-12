@@ -93,7 +93,8 @@ void Player::movePlayer() {
 void Player::updateAnimation(int *frameRate, int *currentFrame) {
 	m_pCurrentFrame->y = m_dCurrentFrameY * m_pCurrentFrame->h;
 	if (*frameRate / m_dAnimationsPerSecond == *currentFrame) {
-		m_pCurrentFrame->x = (++m_dCurrentFrameX + 1) % m_dFrameWidth * m_pCurrentFrame->w;
+		m_dCurrentFrameX = (m_dCurrentFrameX + 1) % m_dFrameWidth;
+		m_pCurrentFrame->x = m_dCurrentFrameX * m_pCurrentFrame->w;
 		*currentFrame = 0;
 	}
 }
