@@ -2,6 +2,7 @@
 #include <SDL.h>
 #include "GameScreen.h"
 #include "Character.h"
+#include "Movement.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
