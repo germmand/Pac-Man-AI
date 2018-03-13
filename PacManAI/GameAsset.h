@@ -4,17 +4,13 @@
 #include <string>
 
 class GameAsset {
-private:
-	SDL_Rect *m_pRect;
-	SDL_Texture *m_pTexture;
+protected:
 	SDL_Renderer *m_pRenderer;
+	SDL_Texture *m_pTexture;
+	SDL_Rect *m_pPosition, *m_pSprite;
+	int m_dSpriteXAnimations, m_dSpriteYAnimations;
 
 public:
-	GameAsset(const std::string& spritePath, SDL_Renderer *renderer, SDL_Rect *spriteRect = nullptr);
+	GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations);
 	~GameAsset();
-
-	SDL_Texture *getSpriteTexture();
-	SDL_Rect *getSpriteRect();
-
-	void printAsset();
 };

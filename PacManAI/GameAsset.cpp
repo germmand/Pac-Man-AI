@@ -1,33 +1,35 @@
 #include "GameAsset.h"
+#include "ScreenConfig.h"
 #include <iostream>
 
-GameAsset::GameAsset(const std::string& spritePath, SDL_Renderer *renderer, SDL_Rect *spriteRect) {
+GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations) {
 	SDL_Surface *surface = SDL_LoadBMP(spritePath.c_str());
-	m_pRect = spriteRect;
-
 	if (!surface) {
-		std::cerr << "Error al cargar: " << spritePath << ", SDL Error: " << SDL_GetError() << std::endl;
+		std::cerr << "Error al cargar: " << spritePath << ", Error:" << SDL_GetError() << std::endl;
 	}
 
-	m_pTexture = SDL_CreateTextureFromSurface(renderer, surface);
 	m_pRenderer = renderer;
+	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, surface);
+
+	int spriteWidth, spriteHeight;
+	SDL_QueryTexture(m_pTexture, nullptr, nullptr, &spriteWidth, &spriteHeight);
+
+	m_dSpriteXAnimations = spriteXAnimations;
+	m_dSpriteYAnimations = spriteYAnimations;
+
+	m_pPosition = new SDL_Rect();
+	m_pSprite = new SDL_Rect();
+
+	// Todos los assets tendrán el mismo tamaño acorde al tamaño de la matriz.
+	m_pPosition->w = WIDTH / COLUMNS;
+	m_pPosition->h = HEIGHT / ROWS;
+
+	SDL_FreeSurface(surface);
 }
 
 GameAsset::~GameAsset() {
+	delete m_pPosition;
+	delete m_pSprite;
+
 	SDL_DestroyTexture(m_pTexture);
-	delete m_pRect;
-}
-
-SDL_Texture *GameAsset::getSpriteTexture() {
-	return m_pTexture;
-}
-
-SDL_Rect *GameAsset::getSpriteRect() {
-	return m_pRect;
-}
-
-void GameAsset::printAsset() {
-	SDL_RenderClear(m_pRenderer);
-	SDL_RenderCopy(m_pRenderer, m_pTexture, nullptr, m_pRect);
-	SDL_RenderPresent(m_pRenderer);
 }
