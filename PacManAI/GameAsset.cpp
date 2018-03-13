@@ -1,8 +1,8 @@
 #include "GameAsset.h"
-#include "ScreenConfig.h"
+#include "GameConfig.h"
 #include <iostream>
 
-GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations) {
+GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) {
 	SDL_Surface *surface = SDL_LoadBMP(spritePath.c_str());
 	if (!surface) {
 		std::cerr << "Error al cargar: " << spritePath << ", Error:" << SDL_GetError() << std::endl;
@@ -10,6 +10,8 @@ GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteX
 
 	m_pRenderer = renderer;
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, surface);
+
+	m_dAnimationsPerSecond = animationsPerSecond;
 
 	SDL_QueryTexture(m_pTexture, nullptr, nullptr, &m_dSpriteWidth, &m_dSpriteHeight);
 

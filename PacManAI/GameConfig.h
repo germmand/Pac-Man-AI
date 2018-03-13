@@ -13,3 +13,9 @@
 // Tamaño de la matriz.
 #define COLUMNS 28
 #define ROWS 30
+
+// Cantidad de animaciones por defecto cada segundo
+#define DEFAULT_ANIMATIONS_PER_SECOND 4
+
+// Velocidad del juego.
+#define GAME_DELAY_SPEED 45

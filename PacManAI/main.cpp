@@ -39,13 +39,13 @@ int main(int argc, char *argv[]) {
 			}
 		}
 
-		pacman->moveCharacter();
+		pacman->moveCharacter(game->getFPS());
 
 		SDL_RenderClear(game->getRenderer());
 		pacman->addToRenderer();
 		SDL_RenderPresent(game->getRenderer());
 
-		SDL_Delay(10);
+		SDL_Delay(GAME_DELAY_SPEED);
 	}
 	// Se libera la memoria.
 	delete pacman;

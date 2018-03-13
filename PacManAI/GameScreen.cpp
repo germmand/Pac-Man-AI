@@ -1,7 +1,7 @@
 #include "GameScreen.h"
-#include "ScreenConfig.h"
+#include "GameConfig.h"
 
-GameScreen::GameScreen() {
+GameScreen::GameScreen(int FPS) {
 	m_pWindow = SDL_CreateWindow(
 					"Pac-Man AI", 
 					SDL_WINDOWPOS_CENTERED, 
@@ -12,6 +12,7 @@ GameScreen::GameScreen() {
 
 	m_pWindowRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_bIsRunning = true;
+	m_dFPS = FPS;
 }
 
 GameScreen::~GameScreen() {
@@ -33,4 +34,8 @@ void GameScreen::exitGame() {
 
 SDL_Renderer *GameScreen::getRenderer() {
 	return m_pWindowRenderer;
+}
+
+int GameScreen::getFPS() {
+	return m_dFPS;
 }

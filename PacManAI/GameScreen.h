@@ -8,12 +8,14 @@ private:
 	SDL_Renderer *m_pWindowRenderer;
 	SDL_Event m_event;
 	bool m_bIsRunning;
+	int m_dFPS;
 
 public:
-	GameScreen();
+	GameScreen(int FPS = 10);
 	~GameScreen();
 	SDL_Event *getEvent();
 	SDL_Renderer *getRenderer();
 	bool isRunning();
 	void exitGame();
+	int getFPS();
 };

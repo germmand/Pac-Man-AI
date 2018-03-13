@@ -2,6 +2,7 @@
 
 #include <SDL.h>
 #include <string>
+#include "GameConfig.h"
 
 class GameAsset {
 protected:
@@ -12,9 +13,10 @@ protected:
 	int m_dSpriteWidth, m_dSpriteHeight;
 	int m_dCurrentXAnimation, m_dCurrentYAnimation;
 	int m_dCurrentXPosition, m_dCurrentYPosition;
+	int m_dAnimationsPerSecond;
 
 public:
-	GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations);
+	GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
 	~GameAsset();
 	void updatePosition(int x, int y);
 	void updateSprite(int x, int y);
