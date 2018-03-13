@@ -11,8 +11,7 @@ GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteX
 	m_pRenderer = renderer;
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, surface);
 
-	int spriteWidth, spriteHeight;
-	SDL_QueryTexture(m_pTexture, nullptr, nullptr, &spriteWidth, &spriteHeight);
+	SDL_QueryTexture(m_pTexture, nullptr, nullptr, &m_dSpriteWidth, &m_dSpriteHeight);
 
 	m_dSpriteXAnimations = spriteXAnimations;
 	m_dSpriteYAnimations = spriteYAnimations;
