@@ -1,6 +1,7 @@
 #include <iostream>
 #include <SDL.h>
 #include "GameScreen.h"
+#include "Character.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -12,6 +13,9 @@ int main(int argc, char *argv[]) {
 
 	// Se crea la pantalla del juego.
 	GameScreen *game = new GameScreen();
+
+	// Pacman
+	Character *pacman = new Character("assets/pacman.bmp", game->getRenderer(), 2, 4);
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {
@@ -20,22 +24,31 @@ int main(int argc, char *argv[]) {
 			} else if (SDL_KEYDOWN == game->getEvent()->type) {
 				switch (game->getEvent()->key.keysym.sym) {
 				case SDLK_UP:
-					
+					pacman->setDirection(Movement::UP);
 					break;
 				case SDLK_DOWN:
-					
+					pacman->setDirection(Movement::DOWN);
 					break;
 				case SDLK_RIGHT:
-					
+					pacman->setDirection(Movement::RIGHT);
 					break;
 				case SDLK_LEFT:
-					
+					pacman->setDirection(Movement::LEFT);
 					break;
 				}
 			}
 		}
+
+		pacman->moveCharacter();
+
+		SDL_RenderClear(game->getRenderer());
+		pacman->addToRenderer();
+		SDL_RenderPresent(game->getRenderer());
+
+		SDL_Delay(10);
 	}
 	// Se libera la memoria.
+	delete pacman;
 	delete game;
 
 	// Se cierra SDL.

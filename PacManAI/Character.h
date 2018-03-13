@@ -9,4 +9,6 @@ private:
 public:
 	Character(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations);
 	~Character();
+	void setDirection(Movement direction);
+	void moveCharacter();
 };
