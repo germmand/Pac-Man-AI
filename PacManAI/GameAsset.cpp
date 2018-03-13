@@ -23,6 +23,9 @@ GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteX
 	m_pPosition->w = WIDTH / COLUMNS;
 	m_pPosition->h = HEIGHT / ROWS;
 
+	// La animación por defecto será la (0, 0).
+	m_dCurrentXAnimation = m_dCurrentYAnimation = 0;
+
 	SDL_FreeSurface(surface);
 }
 
