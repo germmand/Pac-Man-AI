@@ -74,7 +74,7 @@ bool GameAsset::OnCollision(const GameAsset *asset) {
 			PointInsideAsset(asset->m_pPosition->x + asset->m_pPosition->w, asset->m_pPosition->y + asset->m_pPosition->h);
 }
 
-bool GameAsset::PointInsideAsset(const int& x, const int& y) {
+bool GameAsset::PointInsideAsset(const int &x, const int &y) {
 	return (x >= this->m_pPosition->x && x <= this->m_pPosition->x + this->m_pPosition->w) &&
 		   (y >= this->m_pPosition->y && y <= this->m_pPosition->y + this->m_pPosition->h);
 }

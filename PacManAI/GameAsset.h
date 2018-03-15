@@ -24,5 +24,5 @@ public:
 	bool OnCollision(const GameAsset *asset);
 
 private:
-	bool PointInsideAsset(const int& x, const int& y);
+	bool PointInsideAsset(const int &x, const int &y);
 };
