@@ -7,24 +7,23 @@
 GameMap::GameMap(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
 
-	// Se crea la matriz en memoria dinámica.
-	m_pMap = new GameAsset*[ROWS];
+	// Se inicializa la matrix vacía.
+	m_pMap = new std::vector<std::vector<GameAsset *>>();
 	for (int r = 0; r < ROWS; r++) {
-		m_pMap[r] = new GameAsset[COLUMNS];
-	}
-
-	// La matriz inicialmente estará vacía.
-	for (int r = 0; r < ROWS; r++) {
+		std::vector<GameAsset *> vRows;
 		for (int c = 0; c < COLUMNS; c++) {
-			m_pMap[r][c] = GameAsset(AssetType::NONE);
+			vRows.push_back(new GameAsset(AssetType::NONE));
 		}
+		m_pMap->push_back(vRows);
 	}
 }
 
 GameMap::~GameMap() {
 	// Se limpia la memoria.
 	for (int r = 0; r < ROWS; r++) {
-		delete[] m_pMap[r];
+		for (int c = 0; c < COLUMNS; c++) {
+			delete (*m_pMap)[r][c];
+		}
 	}
-	delete[] m_pMap;
+	delete m_pMap;
 }

@@ -3,6 +3,7 @@
 #include "GameScreen.h"
 #include "Character.h"
 #include "Movement.h"
+#include "GameMap.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -17,6 +18,8 @@ int main(int argc, char *argv[]) {
 
 	// Pacman
 	Character *pacman = new Character(AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
+	// Map
+	GameMap *map = new GameMap(game->getRenderer());
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {
@@ -49,6 +52,7 @@ int main(int argc, char *argv[]) {
 		SDL_Delay(GAME_DELAY_SPEED);
 	}
 	// Se libera la memoria.
+	delete map;
 	delete pacman;
 	delete game;
 
