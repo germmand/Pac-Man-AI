@@ -53,5 +53,8 @@
     <ClInclude Include="AssetType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DefaultMaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

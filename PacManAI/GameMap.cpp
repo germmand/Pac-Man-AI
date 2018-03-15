@@ -1,6 +1,7 @@
 #include "GameMap.h"
 #include "GameConfig.h"
 #include "AssetType.h"
+#include "DefaultMaps.h"
 
 
 GameMap::GameMap(SDL_Renderer *renderer) {

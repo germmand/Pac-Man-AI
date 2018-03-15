@@ -131,6 +131,7 @@
   <ItemGroup>
     <ClInclude Include="AssetType.h" />
     <ClInclude Include="Character.h" />
+    <ClInclude Include="DefaultMaps.h" />
     <ClInclude Include="GameAsset.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScreen.h" />
