@@ -124,12 +124,15 @@
   <ItemGroup>
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameAsset.cpp" />
+    <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScreen.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AssetType.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="GameAsset.h" />
+    <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScreen.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="GameConfig.h" />
