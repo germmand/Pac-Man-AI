@@ -2,11 +2,14 @@
 #include "GameConfig.h"
 #include <iostream>
 
-GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) {
+GameAsset::GameAsset(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) {
 	SDL_Surface *surface = SDL_LoadBMP(spritePath.c_str());
 	if (!surface) {
 		std::cerr << "Error al cargar: " << spritePath << ", Error:" << SDL_GetError() << std::endl;
 	}
+
+	m_pType = new AssetType();
+	*m_pType = type;
 
 	m_pRenderer = renderer;
 	m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer, surface);
@@ -40,9 +43,18 @@ GameAsset::GameAsset(std::string spritePath, SDL_Renderer *renderer, int spriteX
 	SDL_FreeSurface(surface);
 }
 
+GameAsset::GameAsset(AssetType type) {
+	m_pType = new AssetType();
+	*m_pType = type;
+}
+
+GameAsset::GameAsset() {
+}
+
 GameAsset::~GameAsset() {
 	delete m_pPosition;
 	delete m_pSprite;
+	delete m_pType;
 
 	SDL_DestroyTexture(m_pTexture);
 }

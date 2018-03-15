@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 	GameScreen *game = new GameScreen();
 
 	// Pacman
-	Character *pacman = new Character("assets/pacman.bmp", game->getRenderer(), 2, 4);
+	Character *pacman = new Character(AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {

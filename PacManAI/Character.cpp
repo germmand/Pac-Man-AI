@@ -1,8 +1,8 @@
 #include "Character.h"
 #include "GameConfig.h"
 
-Character::Character(std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) 
-	: GameAsset(spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
+Character::Character(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) 
+	: GameAsset(type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
 	// El movimiento por defecto de cada Character será a la derecha.
 	m_pDirection = new Movement();
 	*m_pDirection = Movement::RIGHT;

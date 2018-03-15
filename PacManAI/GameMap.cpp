@@ -7,15 +7,15 @@ GameMap::GameMap(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
 
 	// Se crea la matriz en memoria dinámica.
-	m_pMap = new int*[ROWS];
+	m_pMap = new GameAsset*[ROWS];
 	for (int r = 0; r < ROWS; r++) {
-		m_pMap[r] = new int[COLUMNS];
+		m_pMap[r] = new GameAsset[COLUMNS];
 	}
 
 	// La matriz inicialmente estará vacía.
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
-			m_pMap[r][c] = AssetType::NONE;
+			m_pMap[r][c] = GameAsset(AssetType::NONE);
 		}
 	}
 }
