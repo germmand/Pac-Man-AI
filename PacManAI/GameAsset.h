@@ -21,4 +21,8 @@ public:
 	void updatePosition(int x, int y);
 	void updateSprite(int x, int y);
 	void addToRenderer();
+	bool OnCollision(const GameAsset *asset);
+
+private:
+	bool PointInsideAsset(const int& x, const int& y);
 };
