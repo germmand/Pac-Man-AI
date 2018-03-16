@@ -5,6 +5,8 @@
 #include <vector>
 #include "Character.h"
 
+class Character;
+
 class GameMap {
 private:
 	SDL_Renderer *m_pRenderer;

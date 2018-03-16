@@ -42,6 +42,8 @@ void GameMap::loadMap(Character *pacman) {
 			}
 		}
 	}
+
+	pacman->setMap(this);
 }
 
 void GameMap::renderMap() {

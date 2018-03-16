@@ -20,6 +20,10 @@ void Character::setDirection(Movement direction) {
 	*m_pDirection = direction;
 }
 
+void Character::setMap(GameMap *map) {
+	this->m_pMap = map;
+}
+
 void Character::moveCharacter(const int& FPS) {
 	switch (*m_pDirection) {
 	case Movement::RIGHT:
