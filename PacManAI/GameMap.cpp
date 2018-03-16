@@ -27,13 +27,18 @@ GameMap::~GameMap() {
 	delete m_pMap;
 }
 
-void GameMap::loadMap() {
+void GameMap::loadMap(Character *pacman) {
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
-			if (map_one[r][c] == 'X') {
+			switch (map_one[r][c]) {
+			case 'X':
 				delete (*m_pMap)[r][c];
 				(*m_pMap)[r][c] = new GameAsset(AssetType::WALL, "assets/wall.bmp", m_pRenderer, 1, 1);
 				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
+			case 'C':
+				pacman->updatePosition(c, r);
+				break;
 			}
 		}
 	}

@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	Character *pacman = new Character(AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
 	// Map
 	GameMap *map = new GameMap(game->getRenderer());
-	map->loadMap();
+	map->loadMap(pacman);
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {

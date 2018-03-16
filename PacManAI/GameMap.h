@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include "GameAsset.h"
 #include <vector>
+#include "Character.h"
 
 class GameMap {
 private:
@@ -11,6 +12,6 @@ private:
 public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
-	void loadMap();
+	void loadMap(Character *pacman);
 	void renderMap();
 };

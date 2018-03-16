@@ -2,6 +2,10 @@
 
 #include "GameConfig.h"
 
+/*
+X -> Wall.
+C -> Pacman.
+*/
 char map_one[ROWS][COLUMNS] = {
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXX",
 	"X            XXX          X",
@@ -28,7 +32,7 @@ char map_one[ROWS][COLUMNS] = {
 	"X XXX XXXXXX XXX XXXXXX X X",
 	"      XX     XXX     XX    ",
 	"X XXX XX XXXXXXXXXXX XX X X",
-	"X XXX                   X X",
+	"X XXX         C         X X",
 	"X XXX XXXX XXXXXXXX XXX X X",
 	"X XXX XXXX          XXX X X",
 	"X          XXXXXXXX       X",
