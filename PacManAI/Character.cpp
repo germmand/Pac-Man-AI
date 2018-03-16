@@ -3,9 +3,9 @@
 
 Character::Character(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) 
 	: GameAsset(type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
-	// El movimiento por defecto de cada Character será a la derecha.
+	// El movimiento por defecto será el estático (al iniciar el juego, pac-man no se moverá).
 	m_pDirection = new Movement();
-	*m_pDirection = Movement::RIGHT;
+	*m_pDirection = Movement::STATIC;
 
 	// Variable que se usará para determinar cuando ejecutar una animación
 	// de acuerdo a los FPS y la variable animationsPerSecond.
@@ -25,29 +25,32 @@ void Character::setMap(GameMap *map) {
 }
 
 void Character::moveCharacter(const int& FPS) {
-	int xAux = m_dCurrentXPosition, yAux = m_dCurrentYPosition;
-
 	switch (*m_pDirection) {
 	case Movement::RIGHT:
 		m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
+		m_dCurrentYAnimation = 0;
 		break;
 	case Movement::UP:
 		m_dCurrentYPosition > 0 ? m_dCurrentYPosition -= 1 : m_dCurrentYPosition = ROWS - 1;
+		m_dCurrentYAnimation = 2;
 		break;
 	case Movement::LEFT:
 		m_dCurrentXPosition > 0 ? m_dCurrentXPosition -= 1 : m_dCurrentXPosition = COLUMNS - 1;
+		m_dCurrentYAnimation = 1;
 		break;
 	case Movement::DOWN:
 		m_dCurrentYPosition < ROWS - 1 ? m_dCurrentYPosition += 1 : m_dCurrentYPosition = 0;
+		m_dCurrentYAnimation = 3;
 		break;
 	}
 
-	m_dCurrentYAnimation = *m_pDirection - 1;
-
 	GameAsset *collisionObject = GetCollisionObject();
 	if (collisionObject != nullptr) {
-		m_dCurrentXPosition = xAux;
-		m_dCurrentYPosition = yAux;
+		switch (collisionObject->getType()) {
+		case AssetType::WALL: 
+			*m_pDirection = Movement::STATIC;
+			break;
+		}
 	}
 
 	m_dFrameCounter += 1;
