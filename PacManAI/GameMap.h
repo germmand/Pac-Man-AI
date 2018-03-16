@@ -14,6 +14,7 @@ private:
 public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
+	std::vector<std::vector<GameAsset *>> *getMap() const;
 	void loadMap(Character *pacman);
 	void renderMap();
 };

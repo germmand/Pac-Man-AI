@@ -16,6 +16,7 @@ private:
 public:
 	Character(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
 	~Character();
+	GameAsset *GetCollisionObject();
 	void setMap(GameMap *map);
 	void setDirection(Movement direction);
 	void moveCharacter(const int& FPS);

@@ -25,6 +25,8 @@ void Character::setMap(GameMap *map) {
 }
 
 void Character::moveCharacter(const int& FPS) {
+	int xAux = m_dCurrentXPosition, yAux = m_dCurrentYPosition;
+
 	switch (*m_pDirection) {
 	case Movement::RIGHT:
 		m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
@@ -42,6 +44,12 @@ void Character::moveCharacter(const int& FPS) {
 
 	m_dCurrentYAnimation = *m_pDirection - 1;
 
+	GameAsset *collisionObject = GetCollisionObject();
+	if (collisionObject != nullptr) {
+		m_dCurrentXPosition = xAux;
+		m_dCurrentYPosition = yAux;
+	}
+
 	m_dFrameCounter += 1;
 	if (m_dFrameCounter == FPS / m_dAnimationsPerSecond) {
 		m_dCurrentXAnimation = (m_dCurrentXAnimation + 1) % m_dSpriteXAnimations;
@@ -50,4 +58,16 @@ void Character::moveCharacter(const int& FPS) {
 
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
 	this->updateSprite(m_dCurrentXAnimation, m_dCurrentYAnimation);
+}
+
+GameAsset *Character::GetCollisionObject() {
+	for (int r = 0; r < ROWS; r++) {
+		for (int c = 0; c < COLUMNS; c++) {
+			if ((*(m_pMap->getMap()))[r][c]->OnCollision(this) && (*(m_pMap->getMap()))[r][c]->getType() != AssetType::NONE) {
+				return (*(m_pMap->getMap()))[r][c];
+			}
+		}
+	}
+
+	return nullptr;
 }

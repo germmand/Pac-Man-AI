@@ -53,3 +53,7 @@ void GameMap::renderMap() {
 		}
 	}
 }
+
+std::vector<std::vector<GameAsset *>> *GameMap::getMap() const {
+	return m_pMap;
+}

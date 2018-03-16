@@ -26,7 +26,4 @@ public:
 	void addToRenderer();
 	AssetType getType() const;
 	bool OnCollision(const GameAsset *asset);
-
-private:
-	bool PointInsideAsset(const int &x, const int &y);
 };
