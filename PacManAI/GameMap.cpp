@@ -33,7 +33,7 @@ void GameMap::loadMap() {
 			if (map_one[r][c] == 'X') {
 				delete (*m_pMap)[r][c];
 				(*m_pMap)[r][c] = new GameAsset(AssetType::WALL, "assets/wall.bmp", m_pRenderer, 1, 1);
-				(*m_pMap)[r][c]->updatePosition(r, c);
+				(*m_pMap)[r][c]->updatePosition(c, r);
 			}
 		}
 	}
