@@ -20,11 +20,11 @@ protected:
 public:
 	GameAsset(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
 	GameAsset(AssetType type);
-	GameAsset();
 	~GameAsset();
 	void updatePosition(int x, int y);
 	void updateSprite(int x, int y);
 	void addToRenderer();
+	AssetType getType() const;
 	bool OnCollision(const GameAsset *asset);
 
 private:

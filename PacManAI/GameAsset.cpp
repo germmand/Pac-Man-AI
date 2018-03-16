@@ -48,15 +48,16 @@ GameAsset::GameAsset(AssetType type) {
 	*m_pType = type;
 }
 
-GameAsset::GameAsset() {
-}
-
 GameAsset::~GameAsset() {
 	delete m_pPosition;
 	delete m_pSprite;
 	delete m_pType;
 
 	SDL_DestroyTexture(m_pTexture);
+}
+
+AssetType GameAsset::getType() const {
+	return *m_pType;
 }
 
 void GameAsset::updatePosition(int x, int y) {
