@@ -20,6 +20,7 @@ int main(int argc, char *argv[]) {
 	Character *pacman = new Character(AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
 	// Map
 	GameMap *map = new GameMap(game->getRenderer());
+	map->loadMap();
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {
@@ -47,6 +48,7 @@ int main(int argc, char *argv[]) {
 
 		SDL_RenderClear(game->getRenderer());
 		pacman->addToRenderer();
+		map->renderMap();
 		SDL_RenderPresent(game->getRenderer());
 
 		SDL_Delay(GAME_DELAY_SPEED);

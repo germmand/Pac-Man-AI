@@ -4,7 +4,7 @@
 
 char map_one[ROWS][COLUMNS] = {
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXX",
-	"X           XXXXX         X",
+	"X            XXX          X",
 	"X XXX XXXXX XXXXX XXXXX X X",
 	"X XXX XXXXX XXXXX XXXXX X X",
 	"X                         X",

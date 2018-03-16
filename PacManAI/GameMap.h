@@ -11,4 +11,6 @@ private:
 public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
+	void loadMap();
+	void renderMap();
 };
