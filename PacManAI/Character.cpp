@@ -25,6 +25,20 @@ void Character::setMap(GameMap *map) {
 }
 
 void Character::moveCharacter(const int& FPS) {
+	GameAsset *collisionObject = GetCollisionObject();
+	if (collisionObject != nullptr) {
+		switch (collisionObject->getType()) {
+		case AssetType::WALL:
+			if (*m_pDirection == Movement::RIGHT) m_dCurrentXPosition -= 1;
+			else if (*m_pDirection == Movement::UP) m_dCurrentYPosition += 1;
+			else if (*m_pDirection == Movement::LEFT) m_dCurrentXPosition += 1;
+			else if (*m_pDirection == Movement::DOWN) m_dCurrentYPosition -= 1;
+
+			*m_pDirection = Movement::STATIC;
+			break;
+		}
+	}
+
 	switch (*m_pDirection) {
 	case Movement::RIGHT:
 		m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
@@ -42,15 +56,6 @@ void Character::moveCharacter(const int& FPS) {
 		m_dCurrentYPosition < ROWS - 1 ? m_dCurrentYPosition += 1 : m_dCurrentYPosition = 0;
 		m_dCurrentYAnimation = 3;
 		break;
-	}
-
-	GameAsset *collisionObject = GetCollisionObject();
-	if (collisionObject != nullptr) {
-		switch (collisionObject->getType()) {
-		case AssetType::WALL: 
-			*m_pDirection = Movement::STATIC;
-			break;
-		}
 	}
 
 	m_dFrameCounter += 1;
