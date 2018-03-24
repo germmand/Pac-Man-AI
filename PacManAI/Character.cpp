@@ -17,7 +17,31 @@ Character::~Character() {
 }
 
 void Character::setDirection(Movement direction) {
-	*m_pDirection = direction;
+	Character *copiedCharacter = nullptr;
+
+	switch (direction) {
+	case Movement::RIGHT:
+		copiedCharacter = new Character(m_dCurrentXPosition + 1, m_dCurrentYPosition, m_pMap);
+		break;
+	case Movement::UP:
+		copiedCharacter = new Character(m_dCurrentXPosition, m_dCurrentYPosition - 1, m_pMap);
+		break;
+	case Movement::LEFT: 
+		copiedCharacter = new Character(m_dCurrentXPosition - 1, m_dCurrentYPosition, m_pMap);
+		break;
+	case Movement::DOWN:
+		copiedCharacter = new Character(m_dCurrentXPosition, m_dCurrentYPosition + 1, m_pMap);
+		break;
+	}
+
+	// Se verifica que en la dirección en la que se vaya a mover no esté un muro.
+	// Si hay un muro, no cambia de dirección, sino que se sigue movimiendo en la dirección que lo hacía.
+	GameAsset *collisionObject = copiedCharacter->GetCollisionObject();
+	if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
+		*m_pDirection = direction;
+	}
+
+	delete copiedCharacter;
 }
 
 void Character::setMap(GameMap *map) {
@@ -30,9 +54,7 @@ void Character::moveCharacter(const int& FPS) {
 			Character copiedCharacter = Character(m_dCurrentXPosition + 1, m_dCurrentYPosition, m_pMap);
 			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
 			
-			if (collisionObject != nullptr && collisionObject->getType() == AssetType::WALL) {
-				*m_pDirection = Movement::STATIC;
-			} else {
+			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
 				m_dCurrentYAnimation = 0;
 			}
@@ -42,9 +64,7 @@ void Character::moveCharacter(const int& FPS) {
 			Character copiedCharacter = Character(m_dCurrentXPosition, m_dCurrentYPosition - 1, m_pMap);
 			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
 
-			if (collisionObject != nullptr && collisionObject->getType() == AssetType::WALL) {
-				*m_pDirection = Movement::STATIC;
-			} else {
+			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition > 0 ? m_dCurrentYPosition -= 1 : m_dCurrentYPosition = ROWS - 1;
 				m_dCurrentYAnimation = 2;
 			}
@@ -54,9 +74,7 @@ void Character::moveCharacter(const int& FPS) {
 			Character copiedCharacter = Character(m_dCurrentXPosition - 1, m_dCurrentYPosition, m_pMap);
 			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
 
-			if (collisionObject != nullptr && collisionObject->getType() == AssetType::WALL) {
-				*m_pDirection = Movement::STATIC;
-			} else {
+			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition > 0 ? m_dCurrentXPosition -= 1 : m_dCurrentXPosition = COLUMNS - 1;
 				m_dCurrentYAnimation = 1;
 			}
@@ -66,9 +84,7 @@ void Character::moveCharacter(const int& FPS) {
 			Character copiedCharacter = Character(m_dCurrentXPosition, m_dCurrentYPosition + 1, m_pMap);
 			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
 
-			if (collisionObject != nullptr && collisionObject->getType() == AssetType::WALL) {
-				*m_pDirection = Movement::STATIC;
-			} else {
+			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition < ROWS - 1 ? m_dCurrentYPosition += 1 : m_dCurrentYPosition = 0;
 				m_dCurrentYAnimation = 3;
 			}
