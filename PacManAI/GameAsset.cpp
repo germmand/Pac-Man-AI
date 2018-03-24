@@ -85,3 +85,16 @@ bool GameAsset::OnCollision(const GameAsset *asset) {
 			asset->m_pPosition->x == this->m_pPosition->x					&&
 			asset->m_pPosition->y == this->m_pPosition->y;
 }
+
+GameAsset::GameAsset(int xPosition, int yPosition) {
+	m_dCurrentXPosition = xPosition;
+	m_dCurrentYPosition = yPosition;
+
+	m_pPosition = new SDL_Rect();
+	
+	m_pPosition->w = WIDTH / COLUMNS;
+	m_pPosition->h = HEIGHT / ROWS;
+
+	m_pPosition->x = m_dCurrentXPosition * m_pPosition->w;
+	m_pPosition->y = m_dCurrentYPosition * m_pPosition->h;
+}

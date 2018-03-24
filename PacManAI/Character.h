@@ -15,6 +15,7 @@ private:
 	int m_dFrameCounter;
 public:
 	Character(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
+	Character(int xPosition, int yPosition, GameMap *map);
 	~Character();
 	GameAsset *GetCollisionObject();
 	void setMap(GameMap *map);

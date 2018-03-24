@@ -19,6 +19,7 @@ protected:
 
 public:
 	GameAsset(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
+	GameAsset(int xPosition, int yPosition);
 	GameAsset(AssetType type);
 	~GameAsset();
 	void updatePosition(int x, int y);
