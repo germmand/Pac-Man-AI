@@ -47,8 +47,8 @@ int main(int argc, char *argv[]) {
 		pacman->moveCharacter(game->getFPS());
 
 		SDL_RenderClear(game->getRenderer());
-		pacman->addToRenderer();
 		map->renderMap();
+		pacman->addToRenderer();
 		SDL_RenderPresent(game->getRenderer());
 
 		SDL_Delay(GAME_DELAY_SPEED);
