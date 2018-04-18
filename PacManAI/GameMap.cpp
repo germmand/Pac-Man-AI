@@ -22,9 +22,11 @@ GameMap::~GameMap() {
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
 			delete (*m_pMap)[r][c];
+			(*m_pMap)[r][c] = nullptr;
 		}
 	}
 	delete m_pMap;
+	m_pMap = nullptr;
 }
 
 void GameMap::loadMap(Character *pacman) {

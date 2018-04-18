@@ -58,6 +58,10 @@ int main(int argc, char *argv[]) {
 	delete pacman;
 	delete game;
 
+	map		= nullptr;
+	pacman	= nullptr;
+	game	= nullptr;
+
 	// Se cierra SDL.
 	SDL_Quit();
 	return EXIT_SUCCESS;

@@ -46,6 +46,10 @@ GameAsset::GameAsset(AssetType type, std::string spritePath, SDL_Renderer *rende
 GameAsset::GameAsset(AssetType type) {
 	m_pType = new AssetType();
 	*m_pType = type;
+
+	m_pPosition = nullptr;
+	m_pSprite	= nullptr;
+	m_pTexture	= nullptr;
 }
 
 GameAsset::~GameAsset() {
@@ -54,6 +58,11 @@ GameAsset::~GameAsset() {
 	delete m_pType;
 
 	SDL_DestroyTexture(m_pTexture);
+
+	m_pPosition = nullptr;
+	m_pSprite	= nullptr;
+	m_pType		= nullptr;
+	m_pTexture	= nullptr;
 }
 
 AssetType GameAsset::getType() const {

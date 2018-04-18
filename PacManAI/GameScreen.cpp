@@ -18,6 +18,9 @@ GameScreen::GameScreen(int FPS) {
 GameScreen::~GameScreen() {
 	SDL_DestroyRenderer(m_pWindowRenderer);
 	SDL_DestroyWindow(m_pWindow);
+
+	m_pWindowRenderer = nullptr;
+	m_pWindow = nullptr;
 }
 
 SDL_Event *GameScreen::getEvent() {

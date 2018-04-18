@@ -14,6 +14,7 @@ Character::Character(AssetType type, std::string spritePath, SDL_Renderer *rende
 
 Character::~Character() {
 	delete m_pDirection;
+	m_pDirection = nullptr;
 }
 
 void Character::setDirection(Movement direction) {
