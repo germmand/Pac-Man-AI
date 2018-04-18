@@ -26,5 +26,6 @@ public:
 	void updateSprite(int x, int y);
 	void addToRenderer();
 	AssetType getType() const;
+	void setType(AssetType type) const;
 	bool OnCollision(const GameAsset *asset);
 };

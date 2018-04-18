@@ -98,3 +98,7 @@ GameAsset::GameAsset(int xPosition, int yPosition) {
 	m_pPosition->x = m_dCurrentXPosition * m_pPosition->w;
 	m_pPosition->y = m_dCurrentYPosition * m_pPosition->h;
 }
+
+void GameAsset::setType(AssetType type) const {
+	*m_pType = type;
+}

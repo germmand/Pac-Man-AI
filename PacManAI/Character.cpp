@@ -49,10 +49,12 @@ void Character::setMap(GameMap *map) {
 }
 
 void Character::moveCharacter(const int& FPS) {
+	GameAsset *collisionObject = nullptr;
+
 	switch (*m_pDirection) {
 		case Movement::RIGHT: {
 			Character copiedCharacter = Character(m_dCurrentXPosition + 1, m_dCurrentYPosition, m_pMap);
-			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
+			collisionObject = copiedCharacter.GetCollisionObject();
 			
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
@@ -62,7 +64,7 @@ void Character::moveCharacter(const int& FPS) {
 		break;
 		case Movement::UP: {
 			Character copiedCharacter = Character(m_dCurrentXPosition, m_dCurrentYPosition - 1, m_pMap);
-			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
+			collisionObject = copiedCharacter.GetCollisionObject();
 
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition > 0 ? m_dCurrentYPosition -= 1 : m_dCurrentYPosition = ROWS - 1;
@@ -72,7 +74,7 @@ void Character::moveCharacter(const int& FPS) {
 		break;
 		case Movement::LEFT: {
 			Character copiedCharacter = Character(m_dCurrentXPosition - 1, m_dCurrentYPosition, m_pMap);
-			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
+			collisionObject = copiedCharacter.GetCollisionObject();
 
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition > 0 ? m_dCurrentXPosition -= 1 : m_dCurrentXPosition = COLUMNS - 1;
@@ -82,7 +84,7 @@ void Character::moveCharacter(const int& FPS) {
 		break;
 		case Movement::DOWN: {
 			Character copiedCharacter = Character(m_dCurrentXPosition, m_dCurrentYPosition + 1, m_pMap);
-			GameAsset *collisionObject = copiedCharacter.GetCollisionObject();
+			collisionObject = copiedCharacter.GetCollisionObject();
 
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition < ROWS - 1 ? m_dCurrentYPosition += 1 : m_dCurrentYPosition = 0;
@@ -90,6 +92,15 @@ void Character::moveCharacter(const int& FPS) {
 			}
 		}
 		break;
+	}
+
+	if (collisionObject != nullptr) {
+		switch (collisionObject->getType()) {
+		case AssetType::FOOD:
+			collisionObject->updatePosition(-1, -1);
+			collisionObject->setType(AssetType::NONE);
+			break;
+		}
 	}
 
 	m_dFrameCounter += 1;
