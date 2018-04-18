@@ -51,6 +51,26 @@ void GameMap::loadMap(Character *pacman) {
 				(*m_pMap)[r][c] = new GameAsset(AssetType::BOOSTFOOD, "assets/boostfood.bmp", m_pRenderer, 1, 1);
 				(*m_pMap)[r][c]->updatePosition(c, r);
 				break;
+			case 'A':
+				delete (*m_pMap)[r][c];
+				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost1.bmp", m_pRenderer, 1, 1);
+				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
+			case 'B':
+				delete (*m_pMap)[r][c];
+				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost2.bmp", m_pRenderer, 1, 1);
+				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
+			case 'D':
+				delete (*m_pMap)[r][c];
+				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost3.bmp", m_pRenderer, 1, 1);
+				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
+			case 'E':
+				delete (*m_pMap)[r][c];
+				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost4.bmp", m_pRenderer, 1, 1);
+				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
 			}	
 		}
 	}
