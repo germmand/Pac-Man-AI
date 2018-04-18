@@ -101,6 +101,10 @@ void Character::moveCharacter(const int& FPS) {
 			collisionObject->updatePosition(-1, -1);
 			collisionObject->setType(AssetType::NONE);
 			break;
+		case AssetType::BOOSTFOOD:
+			collisionObject->updatePosition(-1, -1);
+			collisionObject->setType(AssetType::NONE);
+			break;
 		}
 	}
 

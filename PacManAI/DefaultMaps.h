@@ -8,7 +8,7 @@ C -> Pacman.
 */
 char map_one[ROWS][COLUMNS + 1] = {
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-	"XooooooooooooXXXooooooooooXX",
+	"XOoooooooooooXXXoooooooooOXX",
 	"XoXXXoXXXXXoXXXXXoXXXXXoXoXX",
 	"XoXXXoXXXXXoXXXXXoXXXXXoXoXX",
 	"XooooooooooooooooooooooooooX",
@@ -35,6 +35,6 @@ char map_one[ROWS][COLUMNS + 1] = {
 	"XoXXXoooooooooCoooooooooXXoX",
 	"XoXXXoXXXXoXXXXXXXXoXXXoXXoX",
 	"XoXXXoXXXXooooooooooXXXoXXoX",
-	"XooooooooooXXXXXXXXooooooooX",
+	"XOoooooooooXXXXXXXXoooooooOX",
 	"XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
 };

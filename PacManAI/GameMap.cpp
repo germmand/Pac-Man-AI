@@ -46,7 +46,12 @@ void GameMap::loadMap(Character *pacman) {
 				(*m_pMap)[r][c] = new GameAsset(AssetType::FOOD, "assets/food.bmp", m_pRenderer, 1, 1);
 				(*m_pMap)[r][c]->updatePosition(c, r);
 				break;
-			}				
+			case 'O':
+				delete (*m_pMap)[r][c];
+				(*m_pMap)[r][c] = new GameAsset(AssetType::BOOSTFOOD, "assets/boostfood.bmp", m_pRenderer, 1, 1);
+				(*m_pMap)[r][c]->updatePosition(c, r);
+				break;
+			}	
 		}
 	}
 
