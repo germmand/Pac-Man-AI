@@ -4,8 +4,10 @@
 #include "GameAsset.h"
 #include <vector>
 #include "Character.h"
+#include "GhostsHandler.h"
 
 class Character;
+class GhostsHandler;
 
 class GameMap {
 private:
@@ -15,6 +17,6 @@ public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
 	std::vector<std::vector<GameAsset *>> *getMap() const;
-	void loadMap(Character *pacman);
+	void loadMap(Character *pacman, GhostsHandler *ghostHandler);
 	void renderMap();
 };

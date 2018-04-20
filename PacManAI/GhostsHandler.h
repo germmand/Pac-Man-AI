@@ -1,13 +1,16 @@
 #pragma once
 
 #include <vector>
-#include "Ghost.h"
+#include "Character.h"
+
+class Character;
 
 class GhostsHandler {
 private:
-	std::vector<Ghost *> *m_pGhosts;
+	std::vector<Character *> *m_pGhosts;
 public:
 	GhostsHandler();
 	~GhostsHandler();
-	std::vector<Ghost *> *getGhosts();
+	std::vector<Character *> *getGhosts();
+	void renderGhosts();
 };

@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "AssetType.h"
 #include "DefaultMaps.h"
+#include "Ghost.h"
 
 GameMap::GameMap(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
@@ -29,7 +30,7 @@ GameMap::~GameMap() {
 	m_pMap = nullptr;
 }
 
-void GameMap::loadMap(Character *pacman) {
+void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler) {
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
 			switch (map_one[r][c]) {
@@ -40,6 +41,7 @@ void GameMap::loadMap(Character *pacman) {
 				break;
 			case 'C':
 				pacman->updatePosition(c, r);
+				pacman->setMap(this);
 				break;
 			case 'o':
 				delete (*m_pMap)[r][c];
@@ -52,30 +54,28 @@ void GameMap::loadMap(Character *pacman) {
 				(*m_pMap)[r][c]->updatePosition(c, r);
 				break;
 			case 'A':
-				delete (*m_pMap)[r][c];
-				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost1.bmp", m_pRenderer, 1, 1);
-				(*m_pMap)[r][c]->updatePosition(c, r);
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost1.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->back()->updatePosition(c, r);
+				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'B':
-				delete (*m_pMap)[r][c];
-				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost2.bmp", m_pRenderer, 1, 1);
-				(*m_pMap)[r][c]->updatePosition(c, r);
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost2.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->back()->updatePosition(c, r);
+				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'D':
-				delete (*m_pMap)[r][c];
-				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost3.bmp", m_pRenderer, 1, 1);
-				(*m_pMap)[r][c]->updatePosition(c, r);
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost3.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->back()->updatePosition(c, r);
+				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'E':
-				delete (*m_pMap)[r][c];
-				(*m_pMap)[r][c] = new GameAsset(AssetType::GHOST, "assets/ghost4.bmp", m_pRenderer, 1, 1);
-				(*m_pMap)[r][c]->updatePosition(c, r);
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost4.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->back()->updatePosition(c, r);
+				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			}	
 		}
 	}
-
-	pacman->setMap(this);
 }
 
 void GameMap::renderMap() {

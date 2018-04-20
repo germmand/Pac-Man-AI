@@ -1,7 +1,7 @@
 #include "GhostsHandler.h"
 
 GhostsHandler::GhostsHandler() {
-	m_pGhosts = new std::vector<Ghost *>();
+	m_pGhosts = new std::vector<Character *>();
 }
 
 GhostsHandler::~GhostsHandler() {
@@ -14,6 +14,14 @@ GhostsHandler::~GhostsHandler() {
 	m_pGhosts = nullptr;
 }
 
-std::vector<Ghost *> *GhostsHandler::getGhosts() {
+std::vector<Character *> *GhostsHandler::getGhosts() {
 	return m_pGhosts;
+}
+
+void GhostsHandler::renderGhosts() {
+	std::vector<Character *>::iterator ghostsIterator;
+
+	for (ghostsIterator = m_pGhosts->begin(); ghostsIterator != m_pGhosts->end(); ghostsIterator++) {
+		(*ghostsIterator)->addToRenderer();
+	}
 }

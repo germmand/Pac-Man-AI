@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 
 	// Map
 	GameMap *map = new GameMap(game->getRenderer());
-	map->loadMap(pacman);
+	map->loadMap(pacman, ghostsHandler);
 	
 	while (game->isRunning()) {
 		while (SDL_PollEvent(game->getEvent()) != 0) {
@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
 
 		SDL_RenderClear(game->getRenderer());
 		map->renderMap();
+		ghostsHandler->renderGhosts();
 		pacman->addToRenderer();
 		SDL_RenderPresent(game->getRenderer());
 
