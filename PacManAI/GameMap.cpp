@@ -57,6 +57,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler) {
 				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost1.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				break;
 			case 'B':
 				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost2.bmp", m_pRenderer, 1, 1));
