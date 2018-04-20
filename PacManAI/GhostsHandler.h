@@ -13,4 +13,5 @@ public:
 	~GhostsHandler();
 	std::vector<Character *> *getGhosts();
 	void renderGhosts();
+	void moveGhosts(int fps);
 };

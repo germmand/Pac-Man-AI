@@ -1,4 +1,5 @@
 #include "GhostsHandler.h"
+#include "GameConfig.h"
 
 GhostsHandler::GhostsHandler() {
 	m_pGhosts = new std::vector<Character *>();
@@ -23,5 +24,13 @@ void GhostsHandler::renderGhosts() {
 
 	for (ghostsIterator = m_pGhosts->begin(); ghostsIterator != m_pGhosts->end(); ghostsIterator++) {
 		(*ghostsIterator)->addToRenderer();
+	}
+}
+
+void GhostsHandler::moveGhosts(int fps) {
+	std::vector<Character *>::iterator ghostsIterator;
+
+	for (ghostsIterator = m_pGhosts->begin(); ghostsIterator != m_pGhosts->end(); ghostsIterator++) {
+		(*ghostsIterator)->moveCharacter(fps);
 	}
 }

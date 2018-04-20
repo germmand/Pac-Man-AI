@@ -50,6 +50,7 @@ int main(int argc, char *argv[]) {
 		}
 
 		pacman->moveCharacter(game->getFPS());
+		ghostsHandler->moveGhosts(game->getFPS());
 
 		SDL_RenderClear(game->getRenderer());
 		map->renderMap();
