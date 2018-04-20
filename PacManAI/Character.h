@@ -9,7 +9,7 @@
 class GameMap;
 
 class Character : public GameAsset {
-private:
+protected:
 	Movement *m_pDirection;
 	GameMap *m_pMap;
 	int m_dFrameCounter;
@@ -20,5 +20,5 @@ public:
 	GameAsset *GetCollisionObject();
 	void setMap(GameMap *map);
 	void setDirection(Movement direction);
-	void moveCharacter(const int& FPS);
+	virtual void moveCharacter(const int &FPS);
 };

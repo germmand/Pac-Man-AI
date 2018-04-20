@@ -49,7 +49,7 @@ void Character::setMap(GameMap *map) {
 	this->m_pMap = map;
 }
 
-void Character::moveCharacter(const int& FPS) {
+void Character::moveCharacter(const int &FPS) {
 	GameAsset *collisionObject = nullptr;
 
 	switch (*m_pDirection) {

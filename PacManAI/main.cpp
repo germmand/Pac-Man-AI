@@ -4,6 +4,7 @@
 #include "Character.h"
 #include "Movement.h"
 #include "GameMap.h"
+#include "GhostsHandler.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -18,6 +19,10 @@ int main(int argc, char *argv[]) {
 
 	// Pacman
 	Character *pacman = new Character(AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
+
+	// Se crea el manipulador de fantasmas,
+	GhostsHandler *ghostsHandler = new GhostsHandler();
+
 	// Map
 	GameMap *map = new GameMap(game->getRenderer());
 	map->loadMap(pacman);
@@ -56,11 +61,13 @@ int main(int argc, char *argv[]) {
 	// Se libera la memoria.
 	delete map;
 	delete pacman;
+	delete ghostsHandler;
 	delete game;
 
-	map		= nullptr;
-	pacman	= nullptr;
-	game	= nullptr;
+	map				= nullptr;
+	pacman			= nullptr;
+	ghostsHandler	= nullptr;
+	game			= nullptr;
 
 	// Se cierra SDL.
 	SDL_Quit();

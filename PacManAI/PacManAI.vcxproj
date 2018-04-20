@@ -126,6 +126,8 @@
     <ClCompile Include="GameAsset.cpp" />
     <ClCompile Include="GameMap.cpp" />
     <ClCompile Include="GameScreen.cpp" />
+    <ClCompile Include="Ghost.cpp" />
+    <ClCompile Include="GhostsHandler.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +137,8 @@
     <ClInclude Include="GameAsset.h" />
     <ClInclude Include="GameMap.h" />
     <ClInclude Include="GameScreen.h" />
+    <ClInclude Include="Ghost.h" />
+    <ClInclude Include="GhostsHandler.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="GameConfig.h" />
   </ItemGroup>
