@@ -76,17 +76,25 @@ void Ghost::moveCharacter(const int &FPS) {
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {
-	Character rightObject = Character(m_dCurrentXPosition + 1, m_dCurrentYPosition, m_pMap);
-	addPath(&rightObject, paths, Movement::RIGHT);
+	if (*m_pDirection != Movement::LEFT) {
+		Character rightObject = Character(m_dCurrentXPosition + 1, m_dCurrentYPosition, m_pMap);
+		addPath(&rightObject, paths, Movement::RIGHT);
+	}
 
-	Character leftObject = Character(m_dCurrentXPosition - 1, m_dCurrentYPosition, m_pMap);
-	addPath(&leftObject, paths, Movement::LEFT);
+	if (*m_pDirection != Movement::RIGHT) {
+		Character leftObject = Character(m_dCurrentXPosition - 1, m_dCurrentYPosition, m_pMap);
+		addPath(&leftObject, paths, Movement::LEFT);
+	}
 
-	Character aboveObject = Character(m_dCurrentXPosition, m_dCurrentYPosition - 1, m_pMap);
-	addPath(&aboveObject, paths, Movement::UP);
+	if (*m_pDirection != Movement::DOWN) {
+		Character aboveObject = Character(m_dCurrentXPosition, m_dCurrentYPosition - 1, m_pMap);
+		addPath(&aboveObject, paths, Movement::UP);
+	}
 
-	Character beneathObject = Character(m_dCurrentXPosition, m_dCurrentYPosition + 1, m_pMap);
-	addPath(&beneathObject, paths, Movement::DOWN);
+	if (*m_pDirection != Movement::UP) {
+		Character beneathObject = Character(m_dCurrentXPosition, m_dCurrentYPosition + 1, m_pMap);
+		addPath(&beneathObject, paths, Movement::DOWN);
+	}
 }
 
 void Ghost::addPath(Character *object, std::vector<Movement> *paths, Movement movement) {
