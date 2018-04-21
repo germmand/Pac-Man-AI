@@ -16,6 +16,7 @@ protected:
 	int m_dCurrentXAnimation, m_dCurrentYAnimation;
 	int m_dCurrentXPosition, m_dCurrentYPosition;
 	int m_dAnimationsPerSecond;
+	int m_bCanRender;
 
 public:
 	GameAsset(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
@@ -28,4 +29,6 @@ public:
 	AssetType getType() const;
 	void setType(AssetType type) const;
 	bool OnCollision(const GameAsset *asset);
+	void setCanRender(bool canRender);
+	bool getCanRender();
 };

@@ -41,6 +41,8 @@ GameAsset::GameAsset(AssetType type, std::string spritePath, SDL_Renderer *rende
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
 
 	SDL_FreeSurface(surface);
+
+	m_bCanRender = true;
 }
 
 GameAsset::GameAsset(AssetType type) {
@@ -86,7 +88,9 @@ void GameAsset::updateSprite(int x, int y) {
 }
 
 void GameAsset::addToRenderer() {
-	SDL_RenderCopy(m_pRenderer, m_pTexture, m_pSprite, m_pPosition);
+	if (m_bCanRender) {
+		SDL_RenderCopy(m_pRenderer, m_pTexture, m_pSprite, m_pPosition);
+	}
 }
 
 bool GameAsset::OnCollision(const GameAsset *asset) {
@@ -110,4 +114,12 @@ GameAsset::GameAsset(int xPosition, int yPosition) {
 
 void GameAsset::setType(AssetType type) const {
 	*m_pType = type;
+}
+
+void GameAsset::setCanRender(bool canRender) {
+	m_bCanRender = canRender;
+}
+
+bool GameAsset::getCanRender() {
+	return m_bCanRender;
 }

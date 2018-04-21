@@ -95,15 +95,15 @@ void Character::moveCharacter(const int &FPS) {
 		break;
 	}
 
-	if (collisionObject != nullptr) {
+	if (collisionObject != nullptr && collisionObject->getCanRender() != false) {
 		switch (collisionObject->getType()) {
 		case AssetType::FOOD:
-			collisionObject->updatePosition(-1, -1);
-			collisionObject->setType(AssetType::NONE);
+			collisionObject->setCanRender(false);
+			//collisionObject->setType(AssetType::NONE);
 			break;
 		case AssetType::BOOSTFOOD:
-			collisionObject->updatePosition(-1, -1);
-			collisionObject->setType(AssetType::NONE);
+			collisionObject->setCanRender(false);
+			//collisionObject->setType(AssetType::NONE);
 			break;
 		}
 	}

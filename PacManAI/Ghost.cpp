@@ -1,5 +1,5 @@
 #include "Ghost.h"
-#include <iostream>
+#include <iostream> // For debuggin' purposes only.
 
 Ghost::Ghost(Character *pacman, AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) 
 	: Character(type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
@@ -56,11 +56,15 @@ void Ghost::moveCharacter(const int &FPS) {
 		break;
 	}
 
+	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
+
 	// HERE WILL GO THE ALGORITHM TO TRACK PACMAN...
 	std::vector<Movement> avalaiblePaths;
 	determineAvalaiblePaths(&avalaiblePaths);
 
-	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
+	if (avalaiblePaths.size() > 0) {
+		*m_pDirection = avalaiblePaths[rand() % avalaiblePaths.size()];
+	}
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {
