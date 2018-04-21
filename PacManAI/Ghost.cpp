@@ -12,7 +12,6 @@ Ghost::~Ghost() {
 
 void Ghost::moveCharacter(const int &FPS) {
 	GameAsset *collisionObject = nullptr;
-	bool hasToSwitchPath = false;
 
 	switch (*m_pDirection) {
 	case Movement::RIGHT: {
@@ -22,8 +21,6 @@ void Ghost::moveCharacter(const int &FPS) {
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition < COLUMNS - 1 ? m_dCurrentXPosition += 1 : m_dCurrentXPosition = 0;
 				m_dCurrentYAnimation = 0;
-			} else {
-				hasToSwitchPath = true;
 			}
 		}
 		break;
@@ -34,8 +31,6 @@ void Ghost::moveCharacter(const int &FPS) {
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentXPosition > 0 ? m_dCurrentXPosition -= 1 : m_dCurrentXPosition = COLUMNS - 1;
 				m_dCurrentYAnimation = 1;
-			} else {
-				hasToSwitchPath = true;
 			}
 		}
 		break;
@@ -46,8 +41,6 @@ void Ghost::moveCharacter(const int &FPS) {
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition > 0 ? m_dCurrentYPosition -= 1 : m_dCurrentYPosition = ROWS - 1;
 				m_dCurrentYAnimation = 2;
-			} else {
-				hasToSwitchPath = true;
 			}
 		}
 		break;
@@ -58,21 +51,16 @@ void Ghost::moveCharacter(const int &FPS) {
 			if (collisionObject == nullptr || collisionObject->getType() != AssetType::WALL) {
 				m_dCurrentYPosition < ROWS - 1 ? m_dCurrentYPosition += 1 : m_dCurrentYPosition = 0;
 				m_dCurrentYAnimation = 3;
-			} else {
-				hasToSwitchPath = true;
 			}
 		}
 		break;
 	}
 
-	if (!hasToSwitchPath) {
-		this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
-		return;
-	}
-
 	// HERE WILL GO THE ALGORITHM TO TRACK PACMAN...
 	std::vector<Movement> avalaiblePaths;
 	determineAvalaiblePaths(&avalaiblePaths);
+
+	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {
