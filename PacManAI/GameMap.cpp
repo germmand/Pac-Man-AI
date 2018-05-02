@@ -30,7 +30,7 @@ GameMap::~GameMap() {
 	m_pMap = nullptr;
 }
 
-void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler) {
+void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game) {
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
 			switch (map_one[r][c]) {
@@ -54,23 +54,23 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler) {
 				(*m_pMap)[r][c]->updatePosition(c, r);
 				break;
 			case 'A':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost1.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				break;
 			case 'B':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost2.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'D':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost3.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'E':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, "assets/ghost4.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;

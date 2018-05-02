@@ -5,6 +5,7 @@
 #include <vector>
 #include "Character.h"
 #include "GhostsHandler.h"
+#include "GameScreen.h"
 
 class Character;
 class GhostsHandler;
@@ -17,6 +18,6 @@ public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
 	std::vector<std::vector<GameAsset *>> *getMap() const;
-	void loadMap(Character *pacman, GhostsHandler *ghostHandler);
+	void loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game);
 	void renderMap();
 };
