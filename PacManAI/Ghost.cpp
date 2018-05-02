@@ -60,7 +60,7 @@ void Ghost::moveCharacter(const int &FPS) {
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
 
 	if (hasEncounterPacman()) {
-		std::cout << "Pacman encountered!" << std::endl;
+		//std::cout << "Pacman encountered!" << std::endl; // Para propositos de depuración.
 		m_pGame->exitGame();
 	}
 
