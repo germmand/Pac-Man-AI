@@ -123,3 +123,11 @@ void GameAsset::setCanRender(bool canRender) {
 bool GameAsset::getCanRender() {
 	return m_bCanRender;
 }
+
+int GameAsset::getCurrentXPosition() {
+	return m_dCurrentXPosition;
+}
+
+int GameAsset::getCurrentYPosition() {
+	return m_dCurrentYPosition;
+}

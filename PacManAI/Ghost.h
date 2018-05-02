@@ -17,4 +17,5 @@ public:
 private:
 	void determineAvalaiblePaths(std::vector<Movement> *paths);
 	void addPath(Character *object, std::vector<Movement> *paths, Movement movement);
+	bool hasEncounterPacman();
 };

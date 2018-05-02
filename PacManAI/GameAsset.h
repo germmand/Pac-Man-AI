@@ -31,4 +31,6 @@ public:
 	bool OnCollision(const GameAsset *asset);
 	void setCanRender(bool canRender);
 	bool getCanRender();
+	int getCurrentXPosition();
+	int getCurrentYPosition();
 };

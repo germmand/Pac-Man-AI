@@ -58,6 +58,10 @@ void Ghost::moveCharacter(const int &FPS) {
 
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
 
+	if (hasEncounterPacman()) {
+		std::cout << "Pacman encountered!" << std::endl;
+	}
+
 	// HERE WILL GO THE ALGORITHM TO TRACK PACMAN...
 	std::vector<Movement> avalaiblePaths;
 	determineAvalaiblePaths(&avalaiblePaths);
@@ -95,4 +99,8 @@ void Ghost::addPath(Character *object, std::vector<Movement> *paths, Movement mo
 	if (collisionObject != nullptr && collisionObject->getType() != AssetType::WALL) {
 		paths->push_back(movement);
 	}
+}
+
+bool Ghost::hasEncounterPacman() {
+	return (m_dCurrentXPosition == m_pPacman->getCurrentXPosition() && m_dCurrentYPosition == m_pPacman->getCurrentYPosition());
 }
