@@ -5,6 +5,7 @@
 #include "Movement.h"
 #include "GameMap.h"
 #include "GhostsHandler.h"
+#include <SDL_ttf.h>
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -13,6 +14,9 @@ int main(int argc, char *argv[]) {
 		SDL_Delay(3000);
 		return EXIT_FAILURE;
 	}
+
+	// Se inicia la librería para las fuentes.
+	TTF_Init();
 
 	// Se crea la pantalla del juego.
 	GameScreen *game = new GameScreen();
@@ -72,6 +76,7 @@ int main(int argc, char *argv[]) {
 	game			= nullptr;
 
 	// Se cierra SDL.
+	TTF_Quit();
 	SDL_Quit();
 	return EXIT_SUCCESS;
 }
