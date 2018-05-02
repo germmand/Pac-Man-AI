@@ -6,6 +6,7 @@
 #include "GameMap.h"
 #include "GhostsHandler.h"
 #include <SDL_ttf.h>
+#include "GameFont.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -64,6 +65,12 @@ int main(int argc, char *argv[]) {
 
 		SDL_Delay(GAME_DELAY_SPEED);
 	}
+
+	GameFont *gameOverText = new GameFont("arial.ttf", 25, game->getRenderer());
+	gameOverText->DrawText("Game Over!", { 255, 255, 255 }, 50, 50);
+	delete gameOverText;
+	gameOverText = nullptr;
+
 	// Se libera la memoria.
 	delete map;
 	delete pacman;

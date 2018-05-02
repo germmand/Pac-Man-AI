@@ -61,6 +61,7 @@ void Ghost::moveCharacter(const int &FPS) {
 
 	if (hasEncounterPacman()) {
 		std::cout << "Pacman encountered!" << std::endl;
+		m_pGame->exitGame();
 	}
 
 	// HERE WILL GO THE ALGORITHM TO TRACK PACMAN...
