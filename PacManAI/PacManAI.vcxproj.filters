@@ -39,6 +39,9 @@
     <ClCompile Include="GameFont.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ANode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameScreen.h">
@@ -72,6 +75,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameFont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ANode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

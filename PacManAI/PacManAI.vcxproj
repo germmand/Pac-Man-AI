@@ -122,6 +122,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ANode.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="GameAsset.cpp" />
     <ClCompile Include="GameFont.cpp" />
@@ -132,6 +133,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ANode.h" />
     <ClInclude Include="AssetType.h" />
     <ClInclude Include="Character.h" />
     <ClInclude Include="DefaultMaps.h" />
