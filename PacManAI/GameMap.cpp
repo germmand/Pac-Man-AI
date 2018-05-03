@@ -47,11 +47,13 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				delete (*m_pMap)[r][c];
 				(*m_pMap)[r][c] = new GameAsset(AssetType::FOOD, "assets/food.bmp", m_pRenderer, 1, 1);
 				(*m_pMap)[r][c]->updatePosition(c, r);
+				game->increaseAmountOfFood();
 				break;
 			case 'O':
 				delete (*m_pMap)[r][c];
 				(*m_pMap)[r][c] = new GameAsset(AssetType::BOOSTFOOD, "assets/boostfood.bmp", m_pRenderer, 1, 1);
 				(*m_pMap)[r][c]->updatePosition(c, r);
+				game->increaseAmountOfFood();
 				break;
 			case 'A':
 				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));

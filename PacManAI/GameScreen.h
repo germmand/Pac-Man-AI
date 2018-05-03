@@ -9,6 +9,7 @@ private:
 	SDL_Event m_event;
 	bool m_bIsRunning;
 	int m_dFPS;
+	int m_dAmountOfFood;
 
 public:
 	GameScreen(int FPS = 10);
@@ -17,5 +18,8 @@ public:
 	SDL_Renderer *getRenderer();
 	bool isRunning();
 	void exitGame();
+	void increaseAmountOfFood();
+	void decreaseAmountOfFood();
+	int getAmountOfGood();
 	int getFPS();
 };

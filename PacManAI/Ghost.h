@@ -9,7 +9,6 @@
 class Ghost : public Character {
 private:
 	Character *m_pPacman;
-	GameScreen *m_pGame;
 
 public:
 	Ghost(Character *pacman, AssetType type, GameScreen *game, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);

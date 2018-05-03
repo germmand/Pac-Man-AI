@@ -1,11 +1,12 @@
 #include "Character.h"
 #include "GameConfig.h"
 
-Character::Character(AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond) 
+Character::Character(GameScreen *game, AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond)
 	: GameAsset(type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
 	// El movimiento por defecto será el estático (al iniciar el juego, pac-man no se moverá).
 	m_pDirection = new Movement();
 	*m_pDirection = Movement::STATIC;
+	m_pGame = game;
 
 	// Variable que se usará para determinar cuando ejecutar una animación
 	// de acuerdo a los FPS y la variable animationsPerSecond.
@@ -99,13 +100,19 @@ void Character::moveCharacter(const int &FPS) {
 		switch (collisionObject->getType()) {
 		case AssetType::FOOD:
 			collisionObject->setCanRender(false);
+			m_pGame->decreaseAmountOfFood();
 			//collisionObject->setType(AssetType::NONE);
 			break;
 		case AssetType::BOOSTFOOD:
 			collisionObject->setCanRender(false);
+			m_pGame->decreaseAmountOfFood();
 			//collisionObject->setType(AssetType::NONE);
 			break;
 		}
+	}
+
+	if (m_pGame->getAmountOfGood() == 0) {
+		m_pGame->exitGame();
 	}
 
 	m_dFrameCounter += 1;

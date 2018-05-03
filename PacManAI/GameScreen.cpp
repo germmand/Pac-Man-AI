@@ -13,6 +13,7 @@ GameScreen::GameScreen(int FPS) {
 	m_pWindowRenderer = SDL_CreateRenderer(m_pWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	m_bIsRunning = true;
 	m_dFPS = FPS;
+	m_dAmountOfFood = 0;
 }
 
 GameScreen::~GameScreen() {
@@ -41,4 +42,16 @@ SDL_Renderer *GameScreen::getRenderer() {
 
 int GameScreen::getFPS() {
 	return m_dFPS;
+}
+
+void GameScreen::increaseAmountOfFood() {
+	m_dAmountOfFood += 1;
+}
+
+void GameScreen::decreaseAmountOfFood() {
+	m_dAmountOfFood -= 1;
+}
+
+int GameScreen::getAmountOfGood() {
+	return m_dAmountOfFood;
 }
