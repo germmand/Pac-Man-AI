@@ -3,6 +3,7 @@
 #include "AssetType.h"
 #include "DefaultMaps.h"
 #include "Ghost.h"
+#include <iostream>
 
 GameMap::GameMap(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
@@ -77,7 +78,38 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			}	
+
+			int pathIntersections = 0;
+			bool topIntersection	= false;
+			bool bottomIntersection = false;
+			bool rightIntersection	= false;
+			bool leftIntersection	= false;
+
+			if ((c - 1) >= 0 && map_one[r][c - 1] != 'X' && map_one[r][c] != 'X') {
+				pathIntersections += 1;
+				leftIntersection = true;
+			}
+			if ((c + 1) < COLUMNS && map_one[r][c + 1] != 'X' && map_one[r][c] != 'X') {
+				pathIntersections += 1;
+				rightIntersection = true;
+			}
+			if ((r - 1) >= 0 && map_one[r - 1][c] != 'X' && map_one[r][c] != 'X') {
+				pathIntersections += 1;
+				topIntersection = true;
+			}
+			if ((r + 1) < HEIGHT && map_one[r + 1][c] != 'X' && map_one[r][c] != 'X') {
+				pathIntersections += 1;
+				bottomIntersection = true;
+			}
+
+			if (pathIntersections >= 3 ||
+				(pathIntersections == 2 && rightIntersection != leftIntersection) ||
+				(pathIntersections == 2 && topIntersection != bottomIntersection)) {
+				// We gotta add a node here...
+			}
 		}
+
+		std::cout << std::endl;
 	}
 }
 
