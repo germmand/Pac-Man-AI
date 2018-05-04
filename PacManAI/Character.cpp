@@ -15,11 +15,13 @@ Character::Character(ANode *node, GameScreen *game, AssetType type, std::string 
 }
 
 Character::~Character() {
-	delete m_pDirection;
-	delete m_pCharacterNode;
+	// No es necesario eliminar m_pCharacterNode de acá
+	// ya que el manejador de nodos (ANodeHandler) 
+	// Se encarga de ésta tarea.
+	//delete m_pCharacterNode;
 
+	delete m_pDirection;
 	m_pDirection = nullptr;
-	m_pCharacterNode = nullptr;
 }
 
 void Character::setDirection(Movement direction) {

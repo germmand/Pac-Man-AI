@@ -9,9 +9,11 @@ ANodeHandler::~ANodeHandler() {
 	// Se libera la memoria.
 	for (size_t i = 0; i < m_pNodes->size(); i++) {
 		delete (*m_pNodes)[i];
+		(*m_pNodes)[i] = nullptr;
 	}
 
 	delete m_pNodes;
+	m_pNodes = nullptr;
 }
 
 void ANodeHandler::AddNode(ANode *nNode) {

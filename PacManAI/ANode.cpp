@@ -1,11 +1,15 @@
 #include "ANode.h"
 #include <math.h>
 
-ANode::ANode(int _x, int _y, int _id) 
+ANode::ANode(NodeType nType, int _x, int _y, int _id)
 	: m_dX(_x), m_dY(_y), m_dId(_id){
+	m_pType = new NodeType();
+	*m_pType = nType;
 }
 
 ANode::~ANode() {
+	delete m_pType;
+	m_pType = nullptr;
 }
 
 int ANode::computeDistance(ANode *src, ANode *dest) {
@@ -67,4 +71,8 @@ ANode *ANode::getParent() {
 void ANode::UpdateNode(int x, int y) {
 	this->m_dX = x;
 	this->m_dY = y;
+}
+
+NodeType *ANode::getNodeType() {
+	return this->m_pType;
 }

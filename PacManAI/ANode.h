@@ -1,8 +1,10 @@
 #pragma once
 
+#include "NodeType.h"
+
 class ANode {
 public:
-	ANode(int _x, int _y, int _id);
+	ANode(NodeType nType, int _x, int _y, int _id);
 	~ANode();
 
 	// Setters
@@ -21,6 +23,7 @@ public:
 	int getX();
 	int getY();
 	ANode *getParent();
+	NodeType *getNodeType();
 
 	// Static method to compute the distance between two nodes.
 	static int computeDistance(ANode *src, ANode *dst);
@@ -30,5 +33,6 @@ private:
 	int m_dX, m_dY;
 	int m_dF, m_dG, m_dH;
 	int m_dId;
+	NodeType *m_pType;
 	ANode *m_pParent;
 };

@@ -147,6 +147,7 @@
     <ClInclude Include="GhostsHandler.h" />
     <ClInclude Include="Movement.h" />
     <ClInclude Include="GameConfig.h" />
+    <ClInclude Include="NodeType.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
