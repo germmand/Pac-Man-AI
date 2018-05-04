@@ -1,5 +1,6 @@
 #include "ANodeHandler.h"
 #include "GameConfig.h"
+#include <iostream>
 
 ANodeHandler::ANodeHandler() {
 	m_pNodes = new std::vector<ANode *>();
@@ -119,4 +120,96 @@ ANode *ANodeHandler::FindBottomNeighbor(ANode *node) {
 	}
 
 	return nullptr;
+}
+
+void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
+	std::vector<ANode *> openSet;
+	std::vector<ANode *> closedSet;
+
+	start->setParent(nullptr);
+	start->setG(0);
+	start->setH(ANode::computeDistance(start, goal));
+	start->setF(start->getG() + start->getH());
+	openSet.push_back(start);
+
+	while (openSet.size() > 0) {
+		ANode *currentNode = FindLowestFNode(openSet);
+
+		if (currentNode->getId() == goal->getId()) {
+			// We reached the goal, do something.
+			std::cout << "Goal reached!" << std::endl;
+			return;
+		}
+
+		EraseFromList(currentNode, &openSet);
+		closedSet.push_back(currentNode);
+
+		std::vector<ANode *> currentNeighbors = FindNeighbors(currentNode);
+
+		std::vector<ANode *>::iterator neighborIt;
+		for (neighborIt = currentNeighbors.begin(); neighborIt != currentNeighbors.end(); neighborIt++) {
+			ANode *neighbor = *neighborIt;
+
+			if (IsNodeOnList(neighbor, &closedSet)) {
+				continue;
+			}
+
+			if (!IsNodeOnList(neighbor, &openSet)) {
+				openSet.push_back(neighbor);
+			}
+
+			int gScore = currentNode->getG() + ANode::computeDistance(currentNode, neighbor);
+			int hScore = ANode::computeDistance(neighbor, goal);
+			int fScore = gScore + hScore;
+
+			if (fScore >= neighbor->getF()) {
+				continue;
+			}
+
+			neighbor->setParent(currentNode);
+			neighbor->setG(gScore);
+			neighbor->setH(hScore);
+			neighbor->setF(fScore);
+		}
+	}
+}
+
+ANode *ANodeHandler::FindLowestFNode(std::vector<ANode *> openSet) {
+	ANode *lowestF = nullptr;
+
+	for (size_t i = 0; i < openSet.size(); i++) {
+		if (i == 0) {
+			lowestF = openSet[i];
+			continue;
+		}
+
+		if (openSet[i]->getF() < lowestF->getF()) {
+			lowestF = openSet[i];
+		}
+	}
+
+	return lowestF;
+}
+
+void ANodeHandler::EraseFromList(ANode *nNode, std::vector<ANode *> *nodeList) {
+	for (size_t i = 0; i < nodeList->size(); i++) {
+		if (nNode->getId() == (*nodeList)[i]->getId()) {
+			for (size_t j = i; j < nodeList->size() - 1; j++) {
+				nodeList[j] = nodeList[j + 1];
+			}
+
+			nodeList->pop_back();
+			return;
+		}
+	}
+}
+
+bool ANodeHandler::IsNodeOnList(ANode *nNode, std::vector<ANode *> *nodeList) {
+	for (size_t i = 0; i < nodeList->size(); i++) {
+		if ((*nodeList)[i]->getId() == nNode->getId()) {
+			return true;
+		}
+	}
+
+	return false;
 }

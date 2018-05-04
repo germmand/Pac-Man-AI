@@ -5,6 +5,10 @@ ANode::ANode(NodeType nType, int _x, int _y, int _id)
 	: m_dX(_x), m_dY(_y), m_dId(_id){
 	m_pType = new NodeType();
 	*m_pType = nType;
+
+	this->m_dG = 9999;
+	this->m_dH = 9999;
+	this->m_dF = this->m_dG + this->m_dH;
 }
 
 ANode::~ANode() {

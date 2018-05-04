@@ -12,7 +12,7 @@ public:
 	~ANodeHandler();
 	void AddNode(ANode *nNode);
 	std::vector<ANode *> FindNeighbors(ANode *node);
-
+	void AStarAlgorithm(ANode *start, ANode *goal);
 private:
 	ANode *FindNeighbor(ANode *node, int x, int y);
 
@@ -20,4 +20,8 @@ private:
 	ANode *FindRightNeighbor(ANode *node);
 	ANode *FindTopNeighbor(ANode *node);
 	ANode *FindBottomNeighbor(ANode *node);
+
+	ANode *FindLowestFNode(std::vector<ANode *> openSet);
+	void EraseFromList(ANode *nNode, std::vector<ANode *> *nodeList);
+	bool IsNodeOnList(ANode *nNode, std::vector<ANode *> *nodeList);
 };
