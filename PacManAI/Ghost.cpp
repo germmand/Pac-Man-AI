@@ -1,8 +1,8 @@
 #include "Ghost.h"
 #include <iostream> // For debuggin' purposes only.
 
-Ghost::Ghost(ANodeHandler *nodesHandler, Character *pacman, AssetType type, GameScreen *game, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond)
-	: Character(game, type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
+Ghost::Ghost(ANode *node, ANodeHandler *nodesHandler, Character *pacman, AssetType type, GameScreen *game, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond)
+	: Character(node, game, type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
 	m_pPacman = pacman;
 	m_pGame = game;
 	m_pNodesHandler = nodesHandler;
@@ -59,6 +59,7 @@ void Ghost::moveCharacter(const int &FPS) {
 	}
 
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
+	this->m_pCharacterNode->UpdateNode(m_dCurrentXPosition, m_dCurrentYPosition);
 
 	if (hasEncounterPacman()) {
 		//std::cout << "Pacman encountered!" << std::endl; // Para propositos de depuración.

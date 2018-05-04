@@ -63,3 +63,8 @@ int ANode::getY() {
 ANode *ANode::getParent() {
 	return this->m_pParent;
 }
+
+void ANode::UpdateNode(int x, int y) {
+	this->m_dX = x;
+	this->m_dY = y;
+}

@@ -1,12 +1,13 @@
 #include "Character.h"
 #include "GameConfig.h"
 
-Character::Character(GameScreen *game, AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond)
+Character::Character(ANode *node, GameScreen *game, AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond)
 	: GameAsset(type, spritePath, renderer, spriteXAnimations, spriteYAnimations, animationsPerSecond) {
 	// El movimiento por defecto será el estático (al iniciar el juego, pac-man no se moverá).
 	m_pDirection = new Movement();
 	*m_pDirection = Movement::STATIC;
 	m_pGame = game;
+	m_pCharacterNode = node;
 
 	// Variable que se usará para determinar cuando ejecutar una animación
 	// de acuerdo a los FPS y la variable animationsPerSecond.
@@ -15,7 +16,10 @@ Character::Character(GameScreen *game, AssetType type, std::string spritePath, S
 
 Character::~Character() {
 	delete m_pDirection;
+	delete m_pCharacterNode;
+
 	m_pDirection = nullptr;
+	m_pCharacterNode = nullptr;
 }
 
 void Character::setDirection(Movement direction) {
@@ -122,6 +126,7 @@ void Character::moveCharacter(const int &FPS) {
 	}
 
 	this->updatePosition(m_dCurrentXPosition, m_dCurrentYPosition);
+	this->m_pCharacterNode->UpdateNode(m_dCurrentXPosition, m_dCurrentYPosition);
 	this->updateSprite(m_dCurrentXAnimation, m_dCurrentYAnimation);
 }
 
@@ -140,4 +145,8 @@ GameAsset *Character::GetCollisionObject() {
 Character::Character(int xPosition, int yPosition, GameMap *map)
 	: GameAsset(xPosition, yPosition) {
 	m_pMap = map;
+}
+
+ANode *Character::getANode() {
+	return this->m_pCharacterNode;
 }

@@ -19,3 +19,12 @@
 
 // Velocidad del juego.
 #define GAME_DELAY_SPEED 45
+
+// Pacman Node ID
+#define PACMAN_ID 1200
+
+// GHOSTS' ID
+#define YELLOW_GHOST_ID 1201
+#define RED_GHOST_ID 1202
+#define PINK_GHOST_ID 1203
+#define BLUE_GHOST_ID 1204

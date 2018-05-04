@@ -43,6 +43,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				break;
 			case 'C':
 				pacman->updatePosition(c, r);
+				pacman->getANode()->UpdateNode(c, r);
 				pacman->setMap(this);
 				break;
 			case 'o':
@@ -58,23 +59,23 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				game->increaseAmountOfFood();
 				break;
 			case 'A':
-				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(c, r, YELLOW_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				break;
 			case 'B':
-				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(c, r, RED_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'D':
-				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(c, r, PINK_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'E':
-				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(c, r, BLUE_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;

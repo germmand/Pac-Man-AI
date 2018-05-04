@@ -8,6 +8,7 @@
 #include <SDL_ttf.h>
 #include "GameFont.h"
 #include "ANodeHandler.h"
+#include "ANode.h"
 #include <conio.h> // Deprecado. Pero para uso de _kbhit y _getch para determinar si cerrar la ventana al finalizar el juego.
 
 int main(int argc, char *argv[]) {
@@ -29,7 +30,7 @@ int main(int argc, char *argv[]) {
 		GameScreen *game = new GameScreen();
 
 		// Pacman
-		Character *pacman = new Character(game, AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
+		Character *pacman = new Character(new ANode(0, 0, PACMAN_ID), game, AssetType::PACMAN, "assets/pacman.bmp", game->getRenderer(), 2, 4);
 
 		// Se crea el manipulador de fantasmas,
 		GhostsHandler *ghostsHandler = new GhostsHandler();

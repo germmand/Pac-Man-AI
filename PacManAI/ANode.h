@@ -24,6 +24,8 @@ public:
 
 	// Static method to compute the distance between two nodes.
 	static int computeDistance(ANode *src, ANode *dst);
+
+	void UpdateNode(int x, int y);
 private:
 	int m_dX, m_dY;
 	int m_dF, m_dG, m_dH;

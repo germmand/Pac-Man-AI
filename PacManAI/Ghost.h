@@ -6,6 +6,7 @@
 #include <vector>
 #include "GameScreen.h"
 #include "ANodeHandler.h"
+#include "ANode.h"
 
 class Ghost : public Character {
 private:
@@ -13,7 +14,7 @@ private:
 	ANodeHandler *m_pNodesHandler;
 
 public:
-	Ghost(ANodeHandler *nodesHandler, Character *pacman, AssetType type, GameScreen *game, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
+	Ghost(ANode *node, ANodeHandler *nodesHandler, Character *pacman, AssetType type, GameScreen *game, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
 	~Ghost();
 	void moveCharacter(const int &FPS);
 
