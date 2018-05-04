@@ -24,6 +24,14 @@ void ANode::setH(int h) {
 	this->m_dH = h;
 }
 
+void ANode::setX(int x) {
+	this->m_dX = x;
+}
+
+void ANode::setY(int y) {
+	this->m_dY = y;
+}
+
 void ANode::setParent(ANode *parent) {
 	this->m_pParent = parent;
 }
@@ -38,6 +46,18 @@ int ANode::getF() {
 
 int ANode::getH() {
 	return this->m_dH;
+}
+
+int ANode::getId() {
+	return this->m_dId;
+}
+
+int ANode::getX() {
+	return this->m_dX;
+}
+
+int ANode::getY() {
+	return this->m_dY;
 }
 
 ANode *ANode::getParent() {

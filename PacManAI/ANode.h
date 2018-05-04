@@ -9,12 +9,17 @@ public:
 	void setG(int g);
 	void setF(int f);
 	void setH(int h);
+	void setX(int x);
+	void setY(int y);
 	void setParent(ANode *parent);
 
 	// Getters
 	int getG();
 	int getF();
 	int getH();
+	int getId();
+	int getX();
+	int getY();
 	ANode *getParent();
 
 	// Static method to compute the distance between two nodes.
