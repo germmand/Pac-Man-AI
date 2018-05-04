@@ -7,6 +7,7 @@
 #include "GhostsHandler.h"
 #include <SDL_ttf.h>
 #include "GameFont.h"
+#include "ANodeHandler.h"
 #include <conio.h> // Deprecado. Pero para uso de _kbhit y _getch para determinar si cerrar la ventana al finalizar el juego.
 
 int main(int argc, char *argv[]) {
@@ -33,9 +34,12 @@ int main(int argc, char *argv[]) {
 		// Se crea el manipulador de fantasmas,
 		GhostsHandler *ghostsHandler = new GhostsHandler();
 
+		// Se crea el manipulador de nodos.
+		ANodeHandler *ANodesHandler = new ANodeHandler();
+
 		// Map
 		GameMap *map = new GameMap(game->getRenderer());
-		map->loadMap(pacman, ghostsHandler, game);
+		map->loadMap(pacman, ghostsHandler, game, ANodesHandler);
 
 		while (game->isRunning()) {
 			while (SDL_PollEvent(game->getEvent()) != 0) {
@@ -83,12 +87,14 @@ int main(int argc, char *argv[]) {
 		delete map;
 		delete pacman;
 		delete ghostsHandler;
+		delete ANodesHandler;
 		delete game;
 
-		map = nullptr;
-		pacman = nullptr;
-		ghostsHandler = nullptr;
-		game = nullptr;
+		map				= nullptr;
+		pacman			= nullptr;
+		ghostsHandler	= nullptr;
+		ANodesHandler	= nullptr;
+		game			= nullptr;
 
 		std::cout << "El juego ha terminado! Presiona 'R' para reiniciar o cualquier otra tecla para salir..." << std::endl;
 		bool breakLoop = false;

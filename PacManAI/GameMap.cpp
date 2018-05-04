@@ -4,6 +4,7 @@
 #include "DefaultMaps.h"
 #include "Ghost.h"
 #include <iostream>
+#include "ANode.h"
 
 GameMap::GameMap(SDL_Renderer *renderer) {
 	m_pRenderer = renderer;
@@ -31,7 +32,7 @@ GameMap::~GameMap() {
 	m_pMap = nullptr;
 }
 
-void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game) {
+void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game, ANodeHandler *nodesHandler) {
 	for (int r = 0; r < ROWS; r++) {
 		for (int c = 0; c < COLUMNS; c++) {
 			switch (map_one[r][c]) {
@@ -57,23 +58,23 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				game->increaseAmountOfFood();
 				break;
 			case 'A':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost1.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				break;
 			case 'B':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'D':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
 			case 'E':
-				ghostHandler->getGhosts()->push_back(new Ghost(pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
+				ghostHandler->getGhosts()->push_back(new Ghost(nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				ghostHandler->getGhosts()->back()->setMap(this);
 				break;
@@ -105,12 +106,12 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 			if (pathIntersections >= 3 ||
 				(pathIntersections == 2 && rightIntersection != leftIntersection) ||
 				(pathIntersections == 2 && topIntersection != bottomIntersection)) {
-				// We gotta add a node here...
+				nodesHandler->AddNode(new ANode(c, r, (r + 1) * (c + 1)));
 			}
 		}
-
-		std::cout << std::endl;
 	}
+
+	ghostHandler->setNodesHandler(nodesHandler);
 }
 
 void GameMap::renderMap() {

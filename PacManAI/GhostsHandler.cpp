@@ -34,3 +34,7 @@ void GhostsHandler::moveGhosts(int fps) {
 		(*ghostsIterator)->moveCharacter(fps);
 	}
 }
+
+void GhostsHandler::setNodesHandler(ANodeHandler *nodesHandler) {
+	this->m_pANodesHandler = nodesHandler;
+}

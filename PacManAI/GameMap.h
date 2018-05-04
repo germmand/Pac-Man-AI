@@ -6,6 +6,7 @@
 #include "Character.h"
 #include "GhostsHandler.h"
 #include "GameScreen.h"
+#include "ANodeHandler.h"
 
 class Character;
 class GhostsHandler;
@@ -18,6 +19,6 @@ public:
 	GameMap(SDL_Renderer *renderer);
 	~GameMap();
 	std::vector<std::vector<GameAsset *>> *getMap() const;
-	void loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game);
+	void loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game, ANodeHandler *nodesHandler);
 	void renderMap();
 };
