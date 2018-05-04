@@ -44,6 +44,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 			case 'C':
 				pacman->updatePosition(c, r);
 				pacman->getANode()->UpdateNode(c, r);
+				nodesHandler->AddNode(pacman->getANode());
 				pacman->setMap(this);
 				break;
 			case 'o':
