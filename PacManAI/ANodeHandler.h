@@ -13,6 +13,8 @@ public:
 	void AddNode(ANode *nNode);
 	std::vector<ANode *> FindNeighbors(ANode *node);
 	void AStarAlgorithm(ANode *start, ANode *goal);
+
+	bool SteppedOnANode(ANode *nNode);
 private:
 	ANode *FindNeighbor(ANode *node, int x, int y);
 

@@ -73,6 +73,12 @@ void Ghost::moveCharacter(const int &FPS) {
 	if (avalaiblePaths.size() > 0) {
 		*m_pDirection = avalaiblePaths[rand() % avalaiblePaths.size()];
 	}
+
+	if(!m_pNodesHandler->SteppedOnANode(this->getANode())) {
+		return;
+	}
+
+	// We need to apply the algorithm here...
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {

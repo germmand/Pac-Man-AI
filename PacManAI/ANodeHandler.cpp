@@ -209,3 +209,16 @@ bool ANodeHandler::IsNodeOnList(ANode *nNode, std::vector<ANode *> *nodeList) {
 
 	return false;
 }
+
+bool ANodeHandler::SteppedOnANode(ANode *nNode) {
+	for (size_t i = 0; i < m_pNodes->size(); i++) {
+		if ((*m_pNodes)[i]->getId() == nNode->getId()) continue;
+
+		if ((*m_pNodes)[i]->getX() == nNode->getX() &&
+			(*m_pNodes)[i]->getY() == nNode->getY()) {
+			return true;
+		}
+	}
+
+	return false;
+}
