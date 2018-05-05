@@ -194,11 +194,7 @@ ANode *ANodeHandler::FindLowestFNode(std::vector<ANode *> openSet) {
 void ANodeHandler::EraseFromList(ANode *nNode, std::vector<ANode *> *nodeList) {
 	for (size_t i = 0; i < nodeList->size(); i++) {
 		if (nNode->getId() == (*nodeList)[i]->getId()) {
-			for (size_t j = i; j < nodeList->size() - 1; j++) {
-				nodeList[j] = nodeList[j + 1];
-			}
-
-			nodeList->pop_back();
+			nodeList->erase(nodeList->begin() + i);
 			return;
 		}
 	}
