@@ -74,6 +74,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			case 'D':
@@ -81,6 +82,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			case 'E':
@@ -88,6 +90,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
 				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			}	
