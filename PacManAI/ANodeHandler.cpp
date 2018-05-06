@@ -152,6 +152,12 @@ void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
 
 		std::vector<ANode *>::iterator neighborIt;
 		for (neighborIt = currentNeighbors.begin(); neighborIt != currentNeighbors.end(); neighborIt++) {
+			if (!IsNodeReachable(currentNode, *neighborIt)) {
+				closedSet.push_back(*neighborIt);
+			}
+		}
+
+		for (neighborIt = currentNeighbors.begin(); neighborIt != currentNeighbors.end(); neighborIt++) {
 			ANode *neighbor = *neighborIt;
 
 			if (IsNodeOnList(neighbor, &closedSet)) {
@@ -176,6 +182,8 @@ void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
 			neighbor->setF(fScore);
 		}
 	}
+
+	std::cout << "Goal not reached!" << std::endl;
 }
 
 ANode *ANodeHandler::FindLowestFNode(std::vector<ANode *> openSet) {

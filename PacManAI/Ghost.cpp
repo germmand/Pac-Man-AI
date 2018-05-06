@@ -78,7 +78,7 @@ void Ghost::moveCharacter(const int &FPS) {
 		return;
 	}
 
-	// We need to apply the algorithm here...
+	m_pNodesHandler->AStarAlgorithm(this->getANode(), m_pPacman->getANode());
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {

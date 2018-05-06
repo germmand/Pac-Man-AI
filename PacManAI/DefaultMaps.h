@@ -22,7 +22,7 @@ char map_one[ROWS][COLUMNS + 1] = {
 	"XoXXXoXXoXXoXXXXXoXXoXXoXXoX",
 	"XoooooXXoXXoooAoooXXoXXooooX",
 	"XoXXXoXXoXXoXX XXoXXoXXoXXoX",
-	"XoXXXoooooooXBDEXoooooooXXoX",
+	"XoXXXoooooooX   XoooooooXXoX",
 	"XoXXXoXXXXoXXXXXXXXoXXXoXXoX",
 	"XoXXXoXXXXooooooooooXXXoXXoX",
 	"XooooooooooXXXXXXXXooooooooX",
