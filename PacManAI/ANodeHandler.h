@@ -31,4 +31,5 @@ private:
 	ANode *FindLowestFNode(std::vector<ANode *> openSet);
 	void EraseFromList(ANode *nNode, std::vector<ANode *> *nodeList);
 	bool IsNodeOnList(ANode *nNode, std::vector<ANode *> *nodeList);
+	bool IsNodeReachable(ANode *srcNode, ANode *destNode);
 };

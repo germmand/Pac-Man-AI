@@ -226,3 +226,13 @@ bool ANodeHandler::SteppedOnANode(ANode *nNode) {
 
 	return false;
 }
+
+bool ANodeHandler::IsNodeReachable(ANode *srcNode, ANode *destNode) {
+	for (int x = srcNode->getX(); x <= destNode->getX(); x++) {
+		for (int y = srcNode->getY(); y <= destNode->getY(); y++) {
+			if (this->m_pMap->GetAssetTypeAt(x, y) == AssetType::WALL) return false;
+		}
+	}
+
+	return true;
+}
