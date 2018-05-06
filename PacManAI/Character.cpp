@@ -161,4 +161,10 @@ void Character::SaveSpawnPosition(int x, int y) {
 void Character::RestoreToSpawnPosition() {
 	this->updatePosition(m_dSpawnXPos, m_dSpawnYPos);
 	this->getANode()->UpdateNode(m_dSpawnXPos, m_dSpawnYPos);
+
+	if (*this->m_pType == AssetType::PACMAN) {
+		m_dCurrentXAnimation = 0;
+		m_dCurrentYAnimation = 0;
+		*m_pDirection = Movement::STATIC;
+	}
 }
