@@ -22,4 +22,5 @@ public:
 	std::vector<std::vector<GameAsset *>> *getMap() const;
 	void loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen *game, ANodeHandler *nodesHandler);
 	void renderMap();
+	AssetType GetAssetTypeAt(int x, int y);
 };

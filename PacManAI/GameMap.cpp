@@ -133,3 +133,17 @@ void GameMap::renderMap() {
 std::vector<std::vector<GameAsset *>> *GameMap::getMap() const {
 	return m_pMap;
 }
+
+AssetType GameMap::GetAssetTypeAt(int x, int y) {
+	for (int r = 0; r < ROWS; r++) {
+		for (int c = 0; c < COLUMNS; c++) {
+			if ((*m_pMap)[r][c] != nullptr					&&
+				(*m_pMap)[r][c]->getCurrentXPosition() == x &&
+				(*m_pMap)[r][c]->getCurrentYPosition() == y) {
+				return (*m_pMap)[r][c]->getType();
+			}
+		}
+	}
+
+	return AssetType::NONE;
+}
