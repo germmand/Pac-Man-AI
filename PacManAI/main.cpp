@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 		GameMap *map = new GameMap(game->getRenderer());
 		map->loadMap(pacman, ghostsHandler, game, ANodesHandler);
 
-		while (game->getRemainingLives() > 0) {
+		while (game->getRemainingLives() > 0 && !game->getGameWon()) {
 			while (game->isRunning()) {
 				while (SDL_PollEvent(game->getEvent()) != 0) {
 					if (SDL_QUIT == game->getEvent()->type) {
@@ -80,14 +80,25 @@ int main(int argc, char *argv[]) {
 				SDL_Delay(GAME_DELAY_SPEED);
 			}
 
-			game->decreaseLives();
-			if (game->getRemainingLives() > 0 && !bShouldCloseWindow) {
-				Utils::WaitForKey("Tienes " + std::to_string(game->getRemainingLives()) + " vidas restantes, presiona 'r' para continuar...", nullptr);
-				pacman->RestoreToSpawnPosition();
-				ghostsHandler->restoreGhostsToSpawnPos();
-				game->setIsRunning(true);
+			if (!game->getGameWon()) {
+				game->decreaseLives();
+
+				if (game->getRemainingLives() > 0 && !bShouldCloseWindow) {
+					std::cout << "----------" << std::endl;
+					std::cout << "Cantidad total de puntos: " << pacman->getTotalPoints() << std::endl;
+					Utils::WaitForKey("Tienes " + std::to_string(game->getRemainingLives()) + " vidas restantes, presiona 'r' para continuar...", nullptr);
+					pacman->RestoreToSpawnPosition();
+					ghostsHandler->restoreGhostsToSpawnPos();
+					game->setIsRunning(true);
+				}
+			}
+			else {
+				std::cout << "Has ganado el juego!" << std::endl;
 			}
 		}
+
+		std::cout << "----------" << std::endl;
+		std::cout << "Cantidad total de puntos: " << pacman->getTotalPoints() << std::endl;
 
 		/*
 		GameFont *gameOverText = new GameFont("arial.ttf", 25, game->getRenderer());

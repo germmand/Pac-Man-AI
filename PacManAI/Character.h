@@ -17,6 +17,7 @@ protected:
 	GameScreen *m_pGame;
 	ANode *m_pCharacterNode;
 	int m_dFrameCounter;
+	int m_dTotalPoints;
 
 	int m_dSpawnXPos, m_dSpawnYPos;
 public:
@@ -30,4 +31,5 @@ public:
 	virtual void moveCharacter(const int &FPS);
 	void SaveSpawnPosition(int x, int y);
 	void RestoreToSpawnPosition();
+	int getTotalPoints();
 };

@@ -11,6 +11,7 @@ private:
 	int m_dFPS;
 	int m_dAmountOfFood;
 	int m_dRemainingLives;
+	bool m_bGameWon;
 
 public:
 	GameScreen(int FPS = 10);
@@ -26,4 +27,6 @@ public:
 	void decreaseLives();
 	int getFPS();
 	void setIsRunning(bool isRunning);
+	void setGameWon(bool gameWon);
+	bool getGameWon();
 };

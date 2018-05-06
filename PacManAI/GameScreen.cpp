@@ -15,6 +15,7 @@ GameScreen::GameScreen(int FPS) {
 	m_dFPS = FPS;
 	m_dAmountOfFood = 0;
 	m_dRemainingLives = 3;
+	m_bGameWon = false;
 }
 
 GameScreen::~GameScreen() {
@@ -67,4 +68,12 @@ int GameScreen::getRemainingLives() {
 
 void GameScreen::decreaseLives() {
 	m_dRemainingLives -= 1;
+}
+
+void GameScreen::setGameWon(bool gameWon) {
+	m_bGameWon = gameWon;
+}
+
+bool GameScreen::getGameWon() {
+	return m_bGameWon;
 }

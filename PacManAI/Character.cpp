@@ -9,6 +9,8 @@ Character::Character(ANode *node, GameScreen *game, AssetType type, std::string 
 	m_pGame = game;
 	m_pCharacterNode = node;
 
+	m_dTotalPoints = 0;
+
 	// Variable que se usará para determinar cuando ejecutar una animación
 	// de acuerdo a los FPS y la variable animationsPerSecond.
 	m_dFrameCounter = 0;
@@ -54,6 +56,10 @@ void Character::setDirection(Movement direction) {
 
 void Character::setMap(GameMap *map) {
 	this->m_pMap = map;
+}
+
+int Character::getTotalPoints() {
+	return this->m_dTotalPoints;
 }
 
 void Character::moveCharacter(const int &FPS) {
@@ -107,17 +113,20 @@ void Character::moveCharacter(const int &FPS) {
 		case AssetType::FOOD:
 			collisionObject->setCanRender(false);
 			m_pGame->decreaseAmountOfFood();
+			m_dTotalPoints += 2;
 			//collisionObject->setType(AssetType::NONE);
 			break;
 		case AssetType::BOOSTFOOD:
 			collisionObject->setCanRender(false);
 			m_pGame->decreaseAmountOfFood();
+			m_dTotalPoints += 5;
 			//collisionObject->setType(AssetType::NONE);
 			break;
 		}
 	}
 
 	if (m_pGame->getAmountOfGood() == 0) {
+		m_pGame->setGameWon(true);
 		m_pGame->exitGame();
 	}
 
