@@ -67,7 +67,7 @@ ANode *ANodeHandler::FindNeighbor(ANode *node, int x, int y) {
 }
 
 ANode *ANodeHandler::FindLeftNeighbor(ANode *node) {
-	for (size_t i = 0; i < m_pNodes->size(); i++) {
+	for (size_t i = 1; i < WIDTH; i++) {
 		int leftX = node->getX() - i;
 		if (leftX < 0) break;
 
@@ -82,9 +82,9 @@ ANode *ANodeHandler::FindLeftNeighbor(ANode *node) {
 }
 
 ANode *ANodeHandler::FindRightNeighbor(ANode *node) {
-	for (size_t i = 0; i < m_pNodes->size(); i++) {
+	for (size_t i = 1; i < WIDTH; i++) {
 		int rightX = node->getX() + i;
-		if (rightX > WIDTH) break;
+		if (rightX >= WIDTH) break;
 
 		ANode *rightNeighbor = FindNeighbor(node, rightX, node->getY());
 
@@ -97,7 +97,7 @@ ANode *ANodeHandler::FindRightNeighbor(ANode *node) {
 }
 
 ANode *ANodeHandler::FindTopNeighbor(ANode *node) {
-	for (size_t i = 0; i < m_pNodes->size(); i++) {
+	for (size_t i = 1; i < HEIGHT; i++) {
 		int topY = node->getY() - i;
 		if (topY < 0) break;
 
@@ -112,9 +112,9 @@ ANode *ANodeHandler::FindTopNeighbor(ANode *node) {
 }
 
 ANode *ANodeHandler::FindBottomNeighbor(ANode *node) {
-	for (size_t i = 0; i < m_pNodes->size(); i++) {
+	for (size_t i = 1; i < HEIGHT; i++) {
 		int bottomY = node->getY() + i;
-		if (bottomY > HEIGHT) break;
+		if (bottomY >= HEIGHT) break;
 
 		ANode *bottomNeighbor = FindNeighbor(node, node->getX(), bottomY);
 
