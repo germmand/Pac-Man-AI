@@ -10,6 +10,7 @@
 
 class Character;
 class GhostsHandler;
+class ANodeHandler;
 
 class GameMap {
 private:

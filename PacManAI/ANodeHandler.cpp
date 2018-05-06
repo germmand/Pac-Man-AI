@@ -21,6 +21,10 @@ void ANodeHandler::AddNode(ANode *nNode) {
 	m_pNodes->push_back(nNode);
 }
 
+void ANodeHandler::setMap(GameMap *map) {
+	this->m_pMap = map;
+}
+
 std::vector<ANode *> ANodeHandler::FindNeighbors(ANode *node) {
 	std::vector<ANode *> neighbors;
 

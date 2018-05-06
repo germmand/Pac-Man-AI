@@ -119,6 +119,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 	}
 
 	ghostHandler->setNodesHandler(nodesHandler);
+	nodesHandler->setMap(this);
 }
 
 void GameMap::renderMap() {

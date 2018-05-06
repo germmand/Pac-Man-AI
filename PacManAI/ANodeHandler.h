@@ -2,10 +2,14 @@
 
 #include <vector>
 #include "ANode.h"
+#include "GameMap.h"
+
+class GameMap;
 
 class ANodeHandler {
 private:
 	std::vector<ANode *> *m_pNodes;
+	GameMap *m_pMap;
 	
 public:
 	ANodeHandler();
@@ -13,6 +17,7 @@ public:
 	void AddNode(ANode *nNode);
 	std::vector<ANode *> FindNeighbors(ANode *node);
 	void AStarAlgorithm(ANode *start, ANode *goal);
+	void setMap(GameMap *map);
 
 	bool SteppedOnANode(ANode *nNode);
 private:

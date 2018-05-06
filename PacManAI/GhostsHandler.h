@@ -5,6 +5,7 @@
 #include "ANodeHandler.h"
 
 class Character;
+class ANodeHandler;
 
 class GhostsHandler {
 private:
