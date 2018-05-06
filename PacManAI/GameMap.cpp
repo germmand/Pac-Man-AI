@@ -44,6 +44,7 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				break;
 			case 'C':
 				pacman->updatePosition(c, r);
+				pacman->SaveSpawnPosition(c, r);
 				pacman->getANode()->UpdateNode(c, r);
 				nodesHandler->AddNode(pacman->getANode());
 				pacman->setMap(this);
@@ -66,24 +67,28 @@ void GameMap::loadMap(Character *pacman, GhostsHandler *ghostHandler, GameScreen
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
 				ghostHandler->getGhosts()->back()->setDirection(Movement::LEFT);
+				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			case 'B':
 				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(NodeType::GHOST_NODE, c, r, RED_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost2.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			case 'D':
 				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(NodeType::GHOST_NODE, c, r, PINK_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost3.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			case 'E':
 				ghostHandler->getGhosts()->push_back(new Ghost(new ANode(NodeType::GHOST_NODE, c, r, BLUE_GHOST_ID), nodesHandler, pacman, AssetType::GHOST, game, "assets/ghost4.bmp", m_pRenderer, 1, 1));
 				ghostHandler->getGhosts()->back()->updatePosition(c, r);
 				nodesHandler->AddNode(ghostHandler->getGhosts()->back()->getANode());
 				ghostHandler->getGhosts()->back()->setMap(this);
+				ghostHandler->getGhosts()->back()->SaveSpawnPosition(c, r);
 				break;
 			}	
 

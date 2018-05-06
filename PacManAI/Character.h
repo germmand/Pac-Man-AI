@@ -17,6 +17,8 @@ protected:
 	GameScreen *m_pGame;
 	ANode *m_pCharacterNode;
 	int m_dFrameCounter;
+
+	int m_dSpawnXPos, m_dSpawnYPos;
 public:
 	Character(ANode *node, GameScreen *game, AssetType type, std::string spritePath, SDL_Renderer *renderer, int spriteXAnimations, int spriteYAnimations, int animationsPerSecond = DEFAULT_ANIMATIONS_PER_SECOND);
 	Character(int xPosition, int yPosition, GameMap *map);
@@ -26,4 +28,6 @@ public:
 	void setDirection(Movement direction);
 	ANode *getANode();
 	virtual void moveCharacter(const int &FPS);
+	void SaveSpawnPosition(int x, int y);
+	void RestoreToSpawnPosition();
 };

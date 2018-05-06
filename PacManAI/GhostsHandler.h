@@ -17,5 +17,6 @@ public:
 	std::vector<Character *> *getGhosts();
 	void renderGhosts();
 	void moveGhosts(int fps);
+	void restoreGhostsToSpawnPos();
 	void setNodesHandler(ANodeHandler *nodesHandler);
 };

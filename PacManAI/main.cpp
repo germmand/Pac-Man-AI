@@ -10,7 +10,7 @@
 #include "ANodeHandler.h"
 #include "ANode.h"
 #include "NodeType.h"
-#include <conio.h> // Deprecado. Pero para uso de _kbhit y _getch para determinar si cerrar la ventana al finalizar el juego.
+#include "Utils.h"
 
 int main(int argc, char *argv[]) {
 	// Se inicia SDL.
@@ -43,39 +43,50 @@ int main(int argc, char *argv[]) {
 		GameMap *map = new GameMap(game->getRenderer());
 		map->loadMap(pacman, ghostsHandler, game, ANodesHandler);
 
-		while (game->isRunning()) {
-			while (SDL_PollEvent(game->getEvent()) != 0) {
-				if (SDL_QUIT == game->getEvent()->type) {
-					game->exitGame();
-				}
-				else if (SDL_KEYDOWN == game->getEvent()->type) {
-					switch (game->getEvent()->key.keysym.sym) {
-					case SDLK_UP:
-						pacman->setDirection(Movement::UP);
-						break;
-					case SDLK_DOWN:
-						pacman->setDirection(Movement::DOWN);
-						break;
-					case SDLK_RIGHT:
-						pacman->setDirection(Movement::RIGHT);
-						break;
-					case SDLK_LEFT:
-						pacman->setDirection(Movement::LEFT);
-						break;
+		while (game->getRemainingLives() > 0) {
+			while (game->isRunning()) {
+				while (SDL_PollEvent(game->getEvent()) != 0) {
+					if (SDL_QUIT == game->getEvent()->type) {
+						game->exitGame();
+						bShouldCloseWindow = true;
+					}
+					else if (SDL_KEYDOWN == game->getEvent()->type) {
+						switch (game->getEvent()->key.keysym.sym) {
+						case SDLK_UP:
+							pacman->setDirection(Movement::UP);
+							break;
+						case SDLK_DOWN:
+							pacman->setDirection(Movement::DOWN);
+							break;
+						case SDLK_RIGHT:
+							pacman->setDirection(Movement::RIGHT);
+							break;
+						case SDLK_LEFT:
+							pacman->setDirection(Movement::LEFT);
+							break;
+						}
 					}
 				}
+
+				pacman->moveCharacter(game->getFPS());
+				ghostsHandler->moveGhosts(game->getFPS());
+
+				SDL_RenderClear(game->getRenderer());
+				map->renderMap();
+				ghostsHandler->renderGhosts();
+				pacman->addToRenderer();
+				SDL_RenderPresent(game->getRenderer());
+
+				SDL_Delay(GAME_DELAY_SPEED);
 			}
 
-			pacman->moveCharacter(game->getFPS());
-			ghostsHandler->moveGhosts(game->getFPS());
-
-			SDL_RenderClear(game->getRenderer());
-			map->renderMap();
-			ghostsHandler->renderGhosts();
-			pacman->addToRenderer();
-			SDL_RenderPresent(game->getRenderer());
-
-			SDL_Delay(GAME_DELAY_SPEED);
+			game->decreaseLives();
+			if (game->getRemainingLives() > 0 && !bShouldCloseWindow) {
+				Utils::WaitForKey("Tienes " + std::to_string(game->getRemainingLives()) + " vidas restantes, presiona 'r' para continuar...", nullptr);
+				pacman->RestoreToSpawnPosition();
+				ghostsHandler->restoreGhostsToSpawnPos();
+				game->setIsRunning(true);
+			}
 		}
 
 		/*
@@ -98,24 +109,7 @@ int main(int argc, char *argv[]) {
 		ANodesHandler	= nullptr;
 		game			= nullptr;
 
-		std::cout << "El juego ha terminado! Presiona 'R' para reiniciar o cualquier otra tecla para salir..." << std::endl;
-		bool breakLoop = false;
-		while (true) {
-			if (_kbhit()) {
-				switch (_getch()) {
-				case 'r':
-				case 'R':
-					bShouldCloseWindow = false;
-					breakLoop = true;
-					break;
-				default:
-					bShouldCloseWindow = true;
-					breakLoop = true;
-				}
-			}
-
-			if (breakLoop) break;
-		}
+		Utils::WaitForKey("El juego ha terminado! Presiona 'R' para reiniciar o cualquier otra tecla para salir...", &bShouldCloseWindow);
 	}
 
 	// Se cierra SDL.

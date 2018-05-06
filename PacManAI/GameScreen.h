@@ -10,6 +10,7 @@ private:
 	bool m_bIsRunning;
 	int m_dFPS;
 	int m_dAmountOfFood;
+	int m_dRemainingLives;
 
 public:
 	GameScreen(int FPS = 10);
@@ -21,5 +22,8 @@ public:
 	void increaseAmountOfFood();
 	void decreaseAmountOfFood();
 	int getAmountOfGood();
+	int getRemainingLives();
+	void decreaseLives();
 	int getFPS();
+	void setIsRunning(bool isRunning);
 };

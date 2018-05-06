@@ -38,3 +38,11 @@ void GhostsHandler::moveGhosts(int fps) {
 void GhostsHandler::setNodesHandler(ANodeHandler *nodesHandler) {
 	this->m_pANodesHandler = nodesHandler;
 }
+
+void GhostsHandler::restoreGhostsToSpawnPos() {
+	std::vector<Character *>::iterator ghostsIterator;
+
+	for (ghostsIterator = m_pGhosts->begin(); ghostsIterator != m_pGhosts->end(); ghostsIterator++) {
+		(*ghostsIterator)->RestoreToSpawnPosition();
+	}
+}

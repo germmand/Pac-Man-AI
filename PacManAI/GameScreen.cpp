@@ -14,6 +14,7 @@ GameScreen::GameScreen(int FPS) {
 	m_bIsRunning = true;
 	m_dFPS = FPS;
 	m_dAmountOfFood = 0;
+	m_dRemainingLives = 3;
 }
 
 GameScreen::~GameScreen() {
@@ -26,6 +27,10 @@ GameScreen::~GameScreen() {
 
 SDL_Event *GameScreen::getEvent() {
 	return &m_event;
+}
+
+void GameScreen::setIsRunning(bool isRunning) {
+	m_bIsRunning = isRunning;
 }
 
 bool GameScreen::isRunning() {
@@ -54,4 +59,12 @@ void GameScreen::decreaseAmountOfFood() {
 
 int GameScreen::getAmountOfGood() {
 	return m_dAmountOfFood;
+}
+
+int GameScreen::getRemainingLives() {
+	return m_dRemainingLives;
+}
+
+void GameScreen::decreaseLives() {
+	m_dRemainingLives -= 1;
 }

@@ -152,3 +152,13 @@ Character::Character(int xPosition, int yPosition, GameMap *map)
 ANode *Character::getANode() {
 	return this->m_pCharacterNode;
 }
+
+void Character::SaveSpawnPosition(int x, int y) {
+	m_dSpawnXPos = x;
+	m_dSpawnYPos = y;
+}
+
+void Character::RestoreToSpawnPosition() {
+	this->updatePosition(m_dSpawnXPos, m_dSpawnYPos);
+	this->getANode()->UpdateNode(m_dSpawnXPos, m_dSpawnYPos);
+}
