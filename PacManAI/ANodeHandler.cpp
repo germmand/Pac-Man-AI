@@ -126,7 +126,7 @@ ANode *ANodeHandler::FindBottomNeighbor(ANode *node) {
 	return nullptr;
 }
 
-void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
+void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal, bool *PathFound) {
 	std::vector<ANode *> openSet;
 	std::vector<ANode *> closedSet;
 
@@ -142,6 +142,7 @@ void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
 		if (currentNode->getId() == goal->getId()) {
 			// We reached the goal, do something.
 			std::cout << "Goal reached!" << std::endl;
+			*PathFound = true;
 			return;
 		}
 
@@ -149,18 +150,12 @@ void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
 		closedSet.push_back(currentNode);
 
 		std::vector<ANode *> currentNeighbors = FindNeighbors(currentNode);
-
 		std::vector<ANode *>::iterator neighborIt;
-		for (neighborIt = currentNeighbors.begin(); neighborIt != currentNeighbors.end(); neighborIt++) {
-			if (!IsNodeReachable(currentNode, *neighborIt)) {
-				closedSet.push_back(*neighborIt);
-			}
-		}
 
 		for (neighborIt = currentNeighbors.begin(); neighborIt != currentNeighbors.end(); neighborIt++) {
 			ANode *neighbor = *neighborIt;
 
-			if (IsNodeOnList(neighbor, &closedSet)) {
+			if (IsNodeOnList(neighbor, &closedSet) || !IsNodeReachable(currentNode, neighbor)) {
 				continue;
 			}
 
@@ -184,6 +179,7 @@ void ANodeHandler::AStarAlgorithm(ANode *start, ANode *goal) {
 	}
 
 	std::cout << "Goal not reached!" << std::endl;
+	*PathFound = false;
 }
 
 ANode *ANodeHandler::FindLowestFNode(std::vector<ANode *> openSet) {

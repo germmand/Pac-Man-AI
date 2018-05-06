@@ -16,7 +16,7 @@ public:
 	~ANodeHandler();
 	void AddNode(ANode *nNode);
 	std::vector<ANode *> FindNeighbors(ANode *node);
-	void AStarAlgorithm(ANode *start, ANode *goal);
+	void AStarAlgorithm(ANode *start, ANode *goal, bool *PathFound);
 	void setMap(GameMap *map);
 
 	bool SteppedOnANode(ANode *nNode);

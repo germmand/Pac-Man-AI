@@ -66,19 +66,40 @@ void Ghost::moveCharacter(const int &FPS) {
 		m_pGame->exitGame();
 	}
 
-	// HERE WILL GO THE ALGORITHM TO TRACK PACMAN...
-	std::vector<Movement> avalaiblePaths;
-	determineAvalaiblePaths(&avalaiblePaths);
-
-	if (avalaiblePaths.size() > 0) {
-		*m_pDirection = avalaiblePaths[rand() % avalaiblePaths.size()];
-	}
-
-	if(!m_pNodesHandler->SteppedOnANode(this->getANode())) {
+	if (!m_pNodesHandler->SteppedOnANode(this->getANode())) {
 		return;
 	}
 
-	m_pNodesHandler->AStarAlgorithm(this->getANode(), m_pPacman->getANode());
+	bool PathFound;
+	m_pNodesHandler->AStarAlgorithm(this->getANode(), m_pPacman->getANode(), &PathFound);
+
+	if (!PathFound) {
+		std::vector<Movement> avalaiblePaths;
+		determineAvalaiblePaths(&avalaiblePaths);
+
+		if (avalaiblePaths.size() > 0) {
+			*m_pDirection = avalaiblePaths[rand() % avalaiblePaths.size()];
+		}
+
+		return;
+	}
+
+	ComputeNextMovement();
+}
+
+void Ghost::ComputeNextMovement() {
+	ANode *node;
+	for (node = m_pPacman->getANode(); node->getParent()->getParent() != nullptr; node = node->getParent()) {
+	}
+
+	int x = node->getX() - this->getANode()->getX();
+	int y = node->getY() - this->getANode()->getY();
+
+	if (x > 0) *m_pDirection = Movement::RIGHT;
+	else if (x < 0) *m_pDirection = Movement::LEFT;
+
+	if (y > 0) *m_pDirection = Movement::DOWN;
+	else if (y < 0) *m_pDirection = Movement::UP;
 }
 
 void Ghost::determineAvalaiblePaths(std::vector<Movement> *paths) {
