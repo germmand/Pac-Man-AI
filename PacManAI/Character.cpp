@@ -177,3 +177,7 @@ void Character::RestoreToSpawnPosition() {
 		*m_pDirection = Movement::STATIC;
 	}
 }
+
+Movement Character::getDirection() {
+	return *m_pDirection;
+}

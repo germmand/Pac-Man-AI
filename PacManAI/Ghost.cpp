@@ -70,10 +70,10 @@ void Ghost::moveCharacter(const int &FPS) {
 		return;
 	}
 
-	bool PathFound;
-	m_pNodesHandler->AStarAlgorithm(this->getANode(), m_pPacman->getANode(), &PathFound);
+	//bool PathFound;
+	//m_pNodesHandler->AStarAlgorithm(this->getANode(), m_pPacman->getANode(), &PathFound);
 
-	if (!PathFound) {
+	//if (!PathFound) {
 		std::vector<Movement> avalaiblePaths;
 		determineAvalaiblePaths(&avalaiblePaths);
 
@@ -81,10 +81,10 @@ void Ghost::moveCharacter(const int &FPS) {
 			*m_pDirection = avalaiblePaths[rand() % avalaiblePaths.size()];
 		}
 
-		return;
-	}
+	//	return;
+	//}
 
-	ComputeNextMovement();
+	//ComputeNextMovement();
 }
 
 void Ghost::ComputeNextMovement() {
@@ -133,5 +133,9 @@ void Ghost::addPath(Character *object, std::vector<Movement> *paths, Movement mo
 }
 
 bool Ghost::hasEncounterPacman() {
-	return (m_dCurrentXPosition == m_pPacman->getCurrentXPosition() && m_dCurrentYPosition == m_pPacman->getCurrentYPosition());
+	return (m_dCurrentXPosition == m_pPacman->getCurrentXPosition() && m_dCurrentYPosition == m_pPacman->getCurrentYPosition()) ||
+		   (m_dCurrentXPosition - 1 == m_pPacman->getCurrentXPosition() && *m_pDirection == Movement::RIGHT && m_pPacman->getDirection() == Movement::LEFT && m_dCurrentYPosition == m_pPacman->getCurrentYPosition()) || 
+		   (m_dCurrentXPosition + 1 == m_pPacman->getCurrentXPosition() && *m_pDirection == Movement::LEFT && m_pPacman->getDirection() == Movement::RIGHT && m_dCurrentYPosition == m_pPacman->getCurrentYPosition()) ||
+		   (m_dCurrentYPosition - 1 == m_pPacman->getCurrentYPosition() && *m_pDirection == Movement::DOWN && m_pPacman->getDirection() == Movement::UP && m_dCurrentXPosition == m_pPacman->getCurrentXPosition()) || 
+		   (m_dCurrentYPosition + 1 == m_pPacman->getCurrentYPosition() && *m_pDirection == Movement::UP && m_pPacman->getDirection() == Movement::DOWN && m_dCurrentXPosition == m_pPacman->getCurrentXPosition());
 }

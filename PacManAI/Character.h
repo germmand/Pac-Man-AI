@@ -32,4 +32,5 @@ public:
 	void SaveSpawnPosition(int x, int y);
 	void RestoreToSpawnPosition();
 	int getTotalPoints();
+	Movement getDirection();
 };
